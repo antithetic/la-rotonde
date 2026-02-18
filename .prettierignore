@@ -1,0 +1,32 @@
+# Dependencies
+node_modules
+
+# Build outputs
+dist
+.next
+!.next/cache
+.astro
+.vercel
+.turbo
+
+# Lock files (keep formatting stable)
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+bun.lock
+
+# Env and secrets
+.env
+.env.*
+!.env.example
+
+# Generated / cache
+*.min.js
+*.min.css
+coverage
+.cache
+
+# Logs and OS
+*.log
+.DS_Store
+Thumbs.db

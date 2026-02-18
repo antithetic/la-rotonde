@@ -1,0 +1,18 @@
+{
+  "name": "la-rotonde",
+  "version": "1.0.0",
+  "description": "Monorepo for La Rotonde Wine & HiFI Music Bar",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1",
+    "turbo": "^2.8.9"
+  },
+  "packageManager": "pnpm@10.15.1"
+}
