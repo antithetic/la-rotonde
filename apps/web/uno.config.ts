@@ -1,5 +1,1 @@
-import { defineConfig } from 'unocss'
-
-export default defineConfig({
-  // ...UnoCSS options
-})
+export { default } from '@repo/unocss/config'
