@@ -20,6 +20,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@repo/unocss':
+        specifier: workspace:*
+        version: link:../../packages/unocss
       astro:
         specifier: ^5.17.1
         version: 5.17.2(jiti@2.6.1)(rollup@4.57.1)(typescript@5.9.3)
@@ -31,8 +34,7 @@ importers:
         specifier: ^66.6.0
         version: 66.6.0(postcss@8.5.6)(vite@6.4.1(jiti@2.6.1))
 
-  packages:
-
+  packages/unocss:
     devDependencies:
       unocss:
         specifier: ^66.6.0

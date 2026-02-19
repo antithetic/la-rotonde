@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "type": "module",
   "exports": {
-    ".": "./src/uno.config.ts"
+    "config": "./src/uno.config.ts",
+    "css": "./src/styles/global.css"
   },
   "devDependencies": {
     "unocss": "^66.6.0"
