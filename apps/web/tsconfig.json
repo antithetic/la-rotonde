@@ -1,5 +1,12 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@repo/unocss/config": ["../../packages/unocss/src/uno.config.ts"],
+      "@repo/unocss": ["../../packages/unocss/src/index.ts"]
+    }
+  }
 }
