@@ -5,8 +5,17 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@repo/unocss/config": ["../../packages/unocss/src/uno.config.ts"],
-      "@repo/unocss": ["../../packages/unocss/src/index.ts"]
+      "@assets/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"],
+      "@content/*": ["./src/content/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@utils/*": ["./src/utils/*"],
+      // "@repo/unocss/config": ["../../packages/unocss/src/uno.config.ts"],
+      // "@repo/unocss": ["../../packages/unocss/src/index.ts"],
+      
     }
   }
 }
