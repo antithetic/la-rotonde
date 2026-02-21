@@ -2,10 +2,11 @@
 import 'virtual:uno.css'
 import '@repo/design/styles/main.css'
 import Base from '@repo/design/layouts/Base.astro'
+import { SITE } from '@repo/constants/site'
 import Container from '@repo/design/components/Container.astro'
 ---
 
-<Base>
+<Base title={SITE.name + ' — ' + SITE.tagline}>
   <Container>
     <slot />
   </Container>

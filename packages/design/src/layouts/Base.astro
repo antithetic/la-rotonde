@@ -1,6 +1,13 @@
 ---
 // Base layout for the design system
 import '@repo/fonts/space-grotesk'
+import { SITE } from '@repo/constants/site'
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
 ---
 
 <!doctype html>
@@ -11,7 +18,7 @@ import '@repo/fonts/space-grotesk'
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>La Rotonde Wine &amp; HiFi Music Bar</title>
+    <title>{title || SITE.name + ' — ' + SITE.tagline}</title>
   </head>
   <body>
     <slot />

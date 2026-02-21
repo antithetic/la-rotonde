@@ -17,7 +17,8 @@
   "dependencies": {
     "@repo/fonts": "workspace:*",
     "@repo/unocss": "workspace:*",
-    "@repo/foundations": "workspace:*"
+    "@repo/foundations": "workspace:*",
+    "@repo/constants": "workspace:*"
   },
   "devDependencies": {
     "@unocss/astro": "^66.6.0",

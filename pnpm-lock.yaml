@@ -20,6 +20,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@repo/constants':
+        specifier: workspace:*
+        version: link:../../packages/constants
       '@repo/design':
         specifier: workspace:*
         version: link:../../packages/design
@@ -44,6 +47,9 @@ importers:
 
   packages/design:
     dependencies:
+      '@repo/constants':
+        specifier: workspace:*
+        version: link:../constants
       '@repo/fonts':
         specifier: workspace:*
         version: link:../fonts
