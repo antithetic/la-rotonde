@@ -9,7 +9,8 @@
     "./css": "./src/styles/globals.css"
   },
   "files": [
-    "./src/uno.config.ts"
+    "./src/uno.config.ts",
+    "./src/styles/globals.css"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit"
