@@ -5,7 +5,8 @@
   "main": "./src/uno.config.ts",
   "types": "./src/uno.config.ts",
   "exports": {
-    ".": "./src/uno.config.ts"
+    ".": "./src/uno.config.ts",
+    "./css": "./src/styles/globals.css"
   },
   "files": [
     "./src/uno.config.ts"
