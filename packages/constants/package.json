@@ -14,7 +14,8 @@
     "./menu": "./src/menu.ts",
     "./events": "./src/events.ts",
     "./legal": "./src/legal.ts",
-    "./hifi": "./src/hifi.ts"
+    "./hifi": "./src/hifi.ts",
+    "./sanity": "./src/sanity.ts"
   },
   "files": [
     "src"

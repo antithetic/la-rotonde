@@ -1,0 +1,21 @@
+{
+  "name": "@repo/sanity",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "pnpm dlx oxlint@latest --fix"
+  },
+  "dependencies": {
+    "@repo/constants": "workspace:*",
+    "@sanity/vision": "^5.11.0",
+    "react": "^19.1",
+    "react-dom": "^19.1",
+    "sanity": "^5.11.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.8",
+    "@types/react-dom": "^19.2.3"
+  }
+}
