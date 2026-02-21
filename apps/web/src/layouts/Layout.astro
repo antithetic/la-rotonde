@@ -1,5 +1,7 @@
 ---
-import '@repo/unocss/css'
+// import '@repo/unocss/css'
+import 'virtual:uno.css'
+import '@repo/uno-config/css'
 ---
 
 <!doctype html>
@@ -10,18 +12,9 @@ import '@repo/unocss/css'
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>La Rotonde Wine &amp; HiFi Music Bar</title>
   </head>
   <body>
     <slot />
   </body>
 </html>
-
-<style is:global>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>
