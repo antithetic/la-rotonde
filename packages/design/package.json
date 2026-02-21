@@ -1,0 +1,23 @@
+{
+  "name": "@repo/design",
+  "type": "module",
+  "version": "0.0.1",
+  "exports": {
+    "./components/*": "./src/components/*",
+    "./layouts/*": "./src/layouts/*",
+    "./styles/*": "./src/styles/*",
+    "./utils/*": "./src/utils/*"
+  },
+  "files": [
+    "src"
+  ],
+  "peerDependencies": {
+    "astro": "^5.17.1"
+  },
+  "devDependencies": {
+    "@repo/unocss": "workspace:*",
+    "@unocss/astro": "^66.6.0",
+    "unocss": "^66.6.0",
+    "astro": "^5.17.1"
+  }
+}

@@ -3,10 +3,20 @@
  * Export these for use in app configs (Uno/Tailwind), theming, or CSS generation.
  */
 
+const copper = '#d46211'
+
 export const tokens = {
   color: {
-    primary: '#bfe89d',
-    secondary: '#1c0918',
+    primary: copper, // Copper
+    'background-light': copper, // Overriding background to be the Copper color
+    'background-dark': '#221810',
+  },
+  borderRadius: {
+    DEFAULT: '0.125rem',
+    lg: '0.25rem',
+    xl: '0.5rem',
+    '2xl': '0.75rem',
+    full: '9999px',
   },
 } as const
 

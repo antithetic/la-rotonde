@@ -20,7 +20,14 @@ export const config = defineConfig({
     colors: {
       // From @repo/foundations
       primary: tokens.color.primary,
-      secondary: tokens.color.secondary,
+      'background-light': tokens.color['background-light'],
+      'background-dark': tokens.color['background-dark'],
+    },
+    borderRadius: {
+      DEFAULT: tokens.borderRadius.DEFAULT,
+      lg: tokens.borderRadius.lg,
+      xl: tokens.borderRadius.xl,
+      full: tokens.borderRadius.full,
     },
   },
   presets: [
