@@ -14,5 +14,8 @@
       "default": "./src/colors.ts"
     }
   },
-  "files": ["src"]
+  "files": ["src"],
+  "dependencies": {
+    "@repo/fonts": "workspace:*"
+  }
 }

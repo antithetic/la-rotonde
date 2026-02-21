@@ -58,7 +58,11 @@ importers:
         specifier: ^5.2.10
         version: 5.2.10
 
-  packages/foundations: {}
+  packages/foundations:
+    dependencies:
+      '@repo/fonts':
+        specifier: workspace:*
+        version: link:../fonts
 
   packages/unocss:
     devDependencies:
