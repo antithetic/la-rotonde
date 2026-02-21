@@ -5,8 +5,15 @@
 
 export const tokens = {
   color: {
-    primary: '#bfe89d',
-    secondary: '#1c0918',
+    primary: '#d46211', // Copper
+    'background-light': '#d46211', // Overriding background to be the Copper color
+    'background-dark': '#221810',
+  },
+  borderRadius: {
+    DEFAULT: '0.125rem',
+    lg: '0.25rem',
+    xl: '0.5rem',
+    full: '0.75rem',
   },
 } as const
 
