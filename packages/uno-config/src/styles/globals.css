@@ -1,4 +1,4 @@
 
 body {
-  @apply bg-primary;
+  @apply bg-primary text-black;
 }
