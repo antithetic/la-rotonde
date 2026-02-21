@@ -1,3 +1,5 @@
+import { SITE } from './site.ts'
+
 export type EventCategory =
   | 'listening-session'
   | 'wine-tasting'
@@ -84,7 +86,7 @@ export const RECURRING_EVENTS = [
 export const RESERVATIONS = {
   platform: 'Resy', // or 'OpenTable', 'Tock', etc.
   url: 'https://resy.com/cities/sd/la-rotunde',
-  privateEventsUrl: 'https://larotunde.com/private-events',
+  privateEventsUrl: `${SITE.url}/private-events`,
   depositRequired: true,
   depositAmount: 25, // USD per person for ticketed events
   cancellationHrs: 24, // hours before event for full refund

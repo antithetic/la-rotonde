@@ -1,5 +1,5 @@
 export const SITE = {
-  name: 'La Rotunde',
+  name: 'La Rotonde',
   tagline: 'Wine & HiFi Music Bar',
   description:
     'An intimate wine bar and high-fidelity listening lounge in the heart of Hillcrest, San Diego.',

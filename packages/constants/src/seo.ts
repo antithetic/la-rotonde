@@ -23,12 +23,6 @@ export const SEO_DEFAULTS = {
       },
     ],
   },
-
-  twitter: {
-    card: 'summary_large_image',
-    creator: '@larotunde', // replace with real handle
-    site: '@larotunde',
-  },
 } as const
 
 // ── JSON-LD Structured Data ──────────────────────────────────────────────────
