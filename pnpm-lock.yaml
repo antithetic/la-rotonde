@@ -25,26 +25,23 @@ importers:
         version: link:../../packages/unocss
       astro:
         specifier: ^5.17.1
-        version: 5.17.2(jiti@2.6.1)(rollup@4.57.1)(typescript@5.9.3)
+        version: 5.17.2(jiti@2.6.1)(rollup@4.57.1)(tsx@4.21.0)(typescript@5.9.3)
     devDependencies:
-      '@unocss/astro':
-        specifier: ^66.6.0
-        version: 66.6.0(vite@6.4.1(jiti@2.6.1))
-      '@unocss/preset-wind4':
-        specifier: ^66.6.0
-        version: 66.6.0
-      '@unocss/reset':
-        specifier: ^66.6.0
-        version: 66.6.0
       unocss:
         specifier: ^66.6.0
-        version: 66.6.0(postcss@8.5.6)(vite@6.4.1(jiti@2.6.1))
+        version: 66.6.0(postcss@8.5.6)(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0))
+
+  packages/uno-config:
+    devDependencies:
+      unocss:
+        specifier: ^66.6.0
+        version: 66.6.0(postcss@8.5.6)(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0))
 
   packages/unocss:
     devDependencies:
       unocss:
         specifier: ^66.6.0
-        version: 66.6.0(postcss@8.5.6)(vite@6.4.1(jiti@2.6.1))
+        version: 66.6.0(postcss@8.5.6)(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0))
 
 packages:
 
@@ -1143,6 +1140,9 @@ packages:
     resolution: {integrity: sha512-QZjmEOC+IT1uk6Rx0sX22V6uHWVwbdbxf1faPqJ1QhLdGgsRGCZoyaQBm/piRdJy/D2um6hM1UP7ZEeQ4EkP+Q==}
     engines: {node: '>=18'}
 
+  get-tsconfig@4.13.6:
+    resolution: {integrity: sha512-shZT/QMiSHc/YBLxxOkMtgSid5HFoauqCE3/exfsEcwg1WkeqjG+V40yBbBrsD+jW2HDXcs28xOfcbm2jI8Ddw==}
+
   github-slugger@2.0.0:
     resolution: {integrity: sha512-IaOQ9puYtjrkq7Y0Ygl9KDZnrf/aiUJYUpVf89y8kyaxbRG7Y1SrX/jaumrv81vc61+kiMempujsM3Yw7w5qcw==}
 
@@ -1551,6 +1551,9 @@ packages:
   remark-stringify@11.0.0:
     resolution: {integrity: sha512-1OSmLd3awB/t8qdoEOMazZkNsfVTeY4fTsgzcQFdXNq8ToTN4ZGwrMnlda4K6smTFKD+GRV6O48i6Z4iKgPPpw==}
 
+  resolve-pkg-maps@1.0.0:
+    resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
+
   retext-latin@4.0.0:
     resolution: {integrity: sha512-hv9woG7Fy0M9IlRQloq/N6atV82NxLGveq+3H2WOi79dtIYWN8OaxogDm77f8YnVXJL2VD3bbqowu5E3EMhBYA==}
 
@@ -1668,6 +1671,11 @@ packages:
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
+  tsx@4.21.0:
+    resolution: {integrity: sha512-5C1sg4USs1lfG0GFb2RLXsdpXqBSEhAaA/0kPL01wxzpMqLILNxIxIOKiILz+cdg/pLnOUxFYOR5yhHU666wbw==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
 
   turbo-darwin-64@2.8.10:
     resolution: {integrity: sha512-A03fXh+B7S8mL3PbdhTd+0UsaGrhfyPkODvzBDpKRY7bbeac4MDFpJ7I+Slf2oSkCEeSvHKR7Z4U71uKRUfX7g==}
@@ -2488,13 +2496,13 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@unocss/astro@66.6.0(vite@6.4.1(jiti@2.6.1))':
+  '@unocss/astro@66.6.0(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0))':
     dependencies:
       '@unocss/core': 66.6.0
       '@unocss/reset': 66.6.0
-      '@unocss/vite': 66.6.0(vite@6.4.1(jiti@2.6.1))
+      '@unocss/vite': 66.6.0(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0))
     optionalDependencies:
-      vite: 6.4.1(jiti@2.6.1)
+      vite: 6.4.1(jiti@2.6.1)(tsx@4.21.0)
 
   '@unocss/cli@66.6.0':
     dependencies:
@@ -2624,7 +2632,7 @@ snapshots:
     dependencies:
       '@unocss/core': 66.6.0
 
-  '@unocss/vite@66.6.0(vite@6.4.1(jiti@2.6.1))':
+  '@unocss/vite@66.6.0(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0))':
     dependencies:
       '@jridgewell/remapping': 2.3.5
       '@unocss/config': 66.6.0
@@ -2635,7 +2643,7 @@ snapshots:
       pathe: 2.0.3
       tinyglobby: 0.2.15
       unplugin-utils: 0.3.1
-      vite: 6.4.1(jiti@2.6.1)
+      vite: 6.4.1(jiti@2.6.1)(tsx@4.21.0)
 
   acorn@8.15.0: {}
 
@@ -2660,7 +2668,7 @@ snapshots:
 
   array-iterate@2.0.1: {}
 
-  astro@5.17.2(jiti@2.6.1)(rollup@4.57.1)(typescript@5.9.3):
+  astro@5.17.2(jiti@2.6.1)(rollup@4.57.1)(tsx@4.21.0)(typescript@5.9.3):
     dependencies:
       '@astrojs/compiler': 2.13.1
       '@astrojs/internal-helpers': 0.7.5
@@ -2717,8 +2725,8 @@ snapshots:
       unist-util-visit: 5.1.0
       unstorage: 1.17.4
       vfile: 6.0.3
-      vite: 6.4.1(jiti@2.6.1)
-      vitefu: 1.1.1(vite@6.4.1(jiti@2.6.1))
+      vite: 6.4.1(jiti@2.6.1)(tsx@4.21.0)
+      vitefu: 1.1.1(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0))
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
       yocto-spinner: 0.2.3
@@ -3002,6 +3010,11 @@ snapshots:
     optional: true
 
   get-east-asian-width@1.4.0: {}
+
+  get-tsconfig@4.13.6:
+    dependencies:
+      resolve-pkg-maps: 1.0.0
+    optional: true
 
   github-slugger@2.0.0: {}
 
@@ -3671,6 +3684,9 @@ snapshots:
       mdast-util-to-markdown: 2.1.2
       unified: 11.0.5
 
+  resolve-pkg-maps@1.0.0:
+    optional: true
+
   retext-latin@4.0.0:
     dependencies:
       '@types/nlcst': 2.0.3
@@ -3855,6 +3871,14 @@ snapshots:
   tslib@2.8.1:
     optional: true
 
+  tsx@4.21.0:
+    dependencies:
+      esbuild: 0.27.3
+      get-tsconfig: 4.13.6
+    optionalDependencies:
+      fsevents: 2.3.3
+    optional: true
+
   turbo-darwin-64@2.8.10:
     optional: true
 
@@ -3963,9 +3987,9 @@ snapshots:
       unist-util-is: 6.0.1
       unist-util-visit-parents: 6.0.2
 
-  unocss@66.6.0(postcss@8.5.6)(vite@6.4.1(jiti@2.6.1)):
+  unocss@66.6.0(postcss@8.5.6)(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0)):
     dependencies:
-      '@unocss/astro': 66.6.0(vite@6.4.1(jiti@2.6.1))
+      '@unocss/astro': 66.6.0(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0))
       '@unocss/cli': 66.6.0
       '@unocss/core': 66.6.0
       '@unocss/postcss': 66.6.0(postcss@8.5.6)
@@ -3983,9 +4007,9 @@ snapshots:
       '@unocss/transformer-compile-class': 66.6.0
       '@unocss/transformer-directives': 66.6.0
       '@unocss/transformer-variant-group': 66.6.0
-      '@unocss/vite': 66.6.0(vite@6.4.1(jiti@2.6.1))
+      '@unocss/vite': 66.6.0(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0))
     optionalDependencies:
-      vite: 6.4.1(jiti@2.6.1)
+      vite: 6.4.1(jiti@2.6.1)(tsx@4.21.0)
     transitivePeerDependencies:
       - postcss
       - supports-color
@@ -4021,7 +4045,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite@6.4.1(jiti@2.6.1):
+  vite@6.4.1(jiti@2.6.1)(tsx@4.21.0):
     dependencies:
       esbuild: 0.25.12
       fdir: 6.5.0(picomatch@4.0.3)
@@ -4032,10 +4056,11 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
       jiti: 2.6.1
+      tsx: 4.21.0
 
-  vitefu@1.1.1(vite@6.4.1(jiti@2.6.1)):
+  vitefu@1.1.1(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0)):
     optionalDependencies:
-      vite: 6.4.1(jiti@2.6.1)
+      vite: 6.4.1(jiti@2.6.1)(tsx@4.21.0)
 
   vue-flow-layout@0.2.0: {}
 

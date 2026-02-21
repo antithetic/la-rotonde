@@ -1,0 +1,20 @@
+{
+  "name": "@repo/uno-config",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./uno.config.ts"
+  },
+  "files": [
+    "uno.config.ts"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "unocss": "^66.6.0"
+  },
+  "peerDependencies": {
+    "unocss": "^66.6.0"
+  }
+}
