@@ -10,7 +10,7 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
-    "lint": "eslint . --fix"
+    "lint": "pnpm dlx oxlint@latest --fix"
   },
   "keywords": [
     "sanity"
