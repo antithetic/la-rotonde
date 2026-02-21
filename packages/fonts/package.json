@@ -1,0 +1,15 @@
+{
+  "name": "@repo/fonts",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./space-grotesk": "./src/space-grotesk.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@fontsource-variable/space-grotesk": "^5.2.10"
+  }
+}

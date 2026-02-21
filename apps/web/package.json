@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@repo/design": "workspace:*",
+    "@repo/fonts": "workspace:*",
     "astro": "^5.17.1"
   },
   "devDependencies": {
