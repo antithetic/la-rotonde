@@ -8,7 +8,7 @@ export const fonts = {
     cssVar: '--font-space-grotesk',
     fallback: ['system-ui', 'sans-serif'],
     // Full CSS font stack — use this in UnoCSS theme
-    stack: '"Space Grotesk Variable", sans-serif',
+    stack: '"Space Grotesk Variable", system-ui, sans-serif',
   },
 } as const
 

@@ -4,8 +4,7 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./space-grotesk": "./src/space-grotesk.ts",
-    "./css/*": "./src/css/*"
+    "./space-grotesk": "./src/space-grotesk.ts"
   },
   "files": [
     "src"
