@@ -12,8 +12,7 @@
       "types": "./src/colors.ts",
       "import": "./src/colors.ts",
       "default": "./src/colors.ts"
-    },
-    "./globals.css": "./src/globals.css"
+    }
   },
   "files": ["src"]
 }
