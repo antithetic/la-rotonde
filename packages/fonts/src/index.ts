@@ -11,3 +11,5 @@ export const fonts = {
     stack: '"Space Grotesk Variable", sans-serif',
   },
 } as const
+
+export type Fonts = typeof fonts
