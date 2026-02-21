@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@repo/foundations": "workspace:*",
     "unocss": "^66.6.0"
   },
   "peerDependencies": {

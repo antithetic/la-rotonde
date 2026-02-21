@@ -23,9 +23,6 @@ importers:
       '@repo/uno-config':
         specifier: workspace:*
         version: link:../../packages/uno-config
-      '@repo/unocss':
-        specifier: workspace:*
-        version: link:../../packages/unocss
       astro:
         specifier: ^5.17.1
         version: 5.17.2(jiti@2.6.1)(rollup@4.57.1)(tsx@4.21.0)(typescript@5.9.3)
@@ -37,14 +34,13 @@ importers:
         specifier: ^66.6.0
         version: 66.6.0(postcss@8.5.6)(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0))
 
+  packages/foundations: {}
+
   packages/uno-config:
     devDependencies:
-      unocss:
-        specifier: ^66.6.0
-        version: 66.6.0(postcss@8.5.6)(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0))
-
-  packages/unocss:
-    devDependencies:
+      '@repo/foundations':
+        specifier: workspace:*
+        version: link:../foundations
       unocss:
         specifier: ^66.6.0
         version: 66.6.0(postcss@8.5.6)(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0))

@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@repo/uno-config": "workspace:*",
-    "@repo/unocss": "workspace:*",
     "astro": "^5.17.1"
   },
   "devDependencies": {
