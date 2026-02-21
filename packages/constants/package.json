@@ -13,7 +13,8 @@
     "./social": "./src/social.ts",
     "./menu": "./src/menu.ts",
     "./events": "./src/events.ts",
-    "./legal": "./src/legal.ts"
+    "./legal": "./src/legal.ts",
+    "./hifi": "./src/hifi.ts"
   },
   "files": [
     "src"
