@@ -9,7 +9,7 @@ import {
   transformerVariantGroup,
 } from 'unocss'
 
-export default defineConfig({
+export const config = defineConfig({
   shortcuts: [
     // ─── Shortcuts ─────────────────────────────────────────────────────────────
     // Composable multi-class aliases. These are the design system's "components"
@@ -51,4 +51,19 @@ export default defineConfig({
     transformerDirectives(), // Enables @apply, @screen in CSS
     transformerVariantGroup(), // Enables hover:(bg-red text-white) syntax
   ],
+
+  // ─── Content Pipeline ──────────────────────────────────────────────────────
+  // When consumed by an Astro app, Astro's integration handles content
+  // detection. This is a fallback for tools that use this config standalone.
+  content: {
+    pipeline: {
+      include: [
+        /\.(vue|svelte|[jt]sx|mdx?|astro|html)($|\?)/,
+        'src/**/*.{js,ts}',
+      ],
+    },
+  },
 })
+
+// Named export for apps that want to spread/extend
+export default config
