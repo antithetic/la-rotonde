@@ -1,1 +1,1 @@
-export { tokens, cssVars, getRootCss, type Tokens } from './colors'
+export { tokens, type Tokens } from './colors'

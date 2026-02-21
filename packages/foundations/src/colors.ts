@@ -11,18 +11,3 @@ export const tokens = {
 } as const
 
 export type Tokens = typeof tokens
-
-/** CSS custom property names and values for :root or inline styles */
-export const cssVars = {
-  '--primary': tokens.color.primary,
-  '--secondary': tokens.color.secondary,
-} as const
-
-/** Generates :root { --primary: ...; --secondary: ...; } for injection or build-time CSS */
-export function getRootCss(): string {
-  const lines = Object.entries(cssVars)
-    .map(([key, value]) => `  ${key}: ${value};`)
-    .join('\n')
-  return `:root {\n${lines}\n}`
-}
-/** cssVars / getRootCss are defined but not yet injected — note the two separate resolution paths. */
