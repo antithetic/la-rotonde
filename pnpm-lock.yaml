@@ -20,9 +20,9 @@ importers:
 
   apps/web:
     dependencies:
-      '@repo/uno-config':
+      '@repo/unocss':
         specifier: workspace:*
-        version: link:../../packages/uno-config
+        version: link:../../packages/unocss
       astro:
         specifier: ^5.17.1
         version: 5.17.2(jiti@2.6.1)(rollup@4.57.1)(tsx@4.21.0)(typescript@5.9.3)
@@ -36,7 +36,7 @@ importers:
 
   packages/foundations: {}
 
-  packages/uno-config:
+  packages/unocss:
     devDependencies:
       '@repo/foundations':
         specifier: workspace:*

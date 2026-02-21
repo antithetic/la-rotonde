@@ -13,9 +13,9 @@
       "@pages/*": ["./src/pages/*"],
       "@styles/*": ["./src/styles/*"],
       "@utils/*": ["./src/utils/*"],
-      "@repo/unocss/config": ["../../packages/uno-config/src/uno.config.ts"],
-      "@repo/unocss": ["../../packages/uno-config/src/index.ts"],
-      "@repo/unocss/css": ["../../packages/uno-config/src/styles/global.css"]
+      "@repo/unocss/config": ["../../packages/unocss/src/uno.config.ts"],
+      "@repo/unocss": ["../../packages/unocss/src/index.ts"],
+      "@repo/unocss/css": ["../../packages/unocss/src/styles/global.css"]
     }
   }
 }

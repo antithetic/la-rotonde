@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config'
 import UnoCSS from 'unocss/astro'
-import sharedConfig from '@repo/uno-config'
+import sharedConfig from '@repo/unocss'
 
 
 // https://astro.build/config

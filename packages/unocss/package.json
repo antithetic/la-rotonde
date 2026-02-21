@@ -1,12 +1,12 @@
 {
-  "name": "@repo/uno-config",
+  "name": "@repo/unocss",
   "version": "0.1.0",
   "type": "module",
   "main": "./src/uno.config.ts",
   "types": "./src/uno.config.ts",
   "exports": {
     ".": "./src/uno.config.ts",
-    "./css": "./src/styles/globals.css"
+    "./styles": "./src/styles/globals.css"
   },
   "files": [
     "./src/uno.config.ts",
