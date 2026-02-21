@@ -1,9 +1,10 @@
 import {defineCliConfig} from 'sanity/cli'
+import {SANITY} from '@repo/constants'
 
 export default defineCliConfig({
   api: {
-    projectId: 'dbn2d3oe',
-    dataset: 'production',
+    projectId: SANITY.projectId,
+    dataset: SANITY.dataset,
   },
   deployment: {
     /**
