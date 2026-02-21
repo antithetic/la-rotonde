@@ -5,17 +5,16 @@
   "main": "./src/uno.config.ts",
   "types": "./src/uno.config.ts",
   "exports": {
-    ".": "./src/uno.config.ts",
-    "./css": "./src/styles/globals.css"
+    ".": "./src/uno.config.ts"
   },
   "files": [
-    "./src/uno.config.ts",
-    "./src/styles/globals.css"
+    "./src/uno.config.ts"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@repo/foundations": "workspace:*",
     "unocss": "^66.6.0"
   },
   "peerDependencies": {

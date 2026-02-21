@@ -5,4 +5,5 @@ dist
 .env*
 .turbo
 .vercel
-/.astro
+.astro
+/.pnpm-store

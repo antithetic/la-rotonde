@@ -8,6 +8,7 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
+import { tokens } from '@repo/foundations'
 
 export const config = defineConfig({
   shortcuts: [
@@ -17,9 +18,9 @@ export const config = defineConfig({
   ],
   theme: {
     colors: {
-      // ─── Theme Colors ──────────────────────────────────────────────────────────
-      // Define your design system's color palette here. These are the colors
-      // that will be used throughout your project.
+      // From @repo/foundations
+      primary: tokens.color.primary,
+      secondary: tokens.color.secondary,
     },
   },
   presets: [
@@ -55,14 +56,14 @@ export const config = defineConfig({
   // ─── Content Pipeline ──────────────────────────────────────────────────────
   // When consumed by an Astro app, Astro's integration handles content
   // detection. This is a fallback for tools that use this config standalone.
-  content: {
-    pipeline: {
-      include: [
-        /\.(vue|svelte|[jt]sx|mdx?|astro|html)($|\?)/,
-        'src/**/*.{js,ts}',
-      ],
-    },
-  },
+  // content: {
+  //   pipeline: {
+  //     include: [
+  //       /\.(vue|svelte|[jt]sx|mdx?|astro|html)($|\?)/,
+  //       'src/**/*.{js,ts}',
+  //     ],
+  //   },
+  // },
 })
 
 // Named export for apps that want to spread/extend
