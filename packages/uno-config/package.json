@@ -2,11 +2,13 @@
   "name": "@repo/uno-config",
   "version": "0.1.0",
   "type": "module",
+  "main": "./src/uno.config.ts",
+  "types": "./src/uno.config.ts",
   "exports": {
-    ".": "./uno.config.ts"
+    ".": "./src/uno.config.ts"
   },
   "files": [
-    "uno.config.ts"
+    "./src/uno.config.ts"
   ],
   "scripts": {
     "typecheck": "tsc --noEmit"
