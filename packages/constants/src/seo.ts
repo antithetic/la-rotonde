@@ -36,7 +36,8 @@ export function getLocalBusinessSchema() {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: `https://schema.org/${day.charAt(0).toUpperCase() + day.slice(1)}`,
       opens: HOURS[day].open,
-      closes: HOURS[day].close,
+      // '00:00' means "closed all day" to Google — use '23:59' for midnight closes
+      closes: HOURS[day].close === '00:00' ? '23:59' : HOURS[day].close,
     })
   )
 
