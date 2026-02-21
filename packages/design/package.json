@@ -1,0 +1,25 @@
+{
+  "name": "@repo/design",
+  "type": "module",
+  "version": "0.0.1",
+  "exports": {
+    "./components/*": "./src/components/*/index.ts",
+    "./layouts/*": "./src/layouts/*/index.ts",
+    "./styles/*": "./src/styles/*/index.ts",
+    "./utils": "./src/utils/index.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+
+  },
+  "dependencies": {
+    "astro": "^5.17.1"
+  },
+  "devDependencies": {
+    "@repo/unocss": "workspace:*",
+    "@unocss/astro": "^66.6.0",
+    "unocss": "^66.6.0"
+  }
+}

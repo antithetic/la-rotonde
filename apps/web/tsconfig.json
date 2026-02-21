@@ -15,7 +15,12 @@
       "@utils/*": ["./src/utils/*"],
       "@repo/unocss/config": ["../../packages/unocss/src/uno.config.ts"],
       "@repo/unocss": ["../../packages/unocss/src/index.ts"],
-      "@repo/unocss/css": ["../../packages/unocss/src/styles/global.css"]
+      "@repo/unocss/css": ["../../packages/unocss/src/styles/global.css"],
+      "@repo/design": ["../../packages/design/src/index.ts"],
+      "@repo/design/components/*": ["../../packages/design/src/components/*"],
+      "@repo/design/layouts/*": ["../../packages/design/src/layouts/*"],
+      "@repo/design/styles/*": ["../../packages/design/src/styles/*"],
+      "@repo/design/utils/*": ["../../packages/design/src/utils/*"]
     }
   }
 }
