@@ -52,6 +52,12 @@ importers:
         specifier: ^66.6.0
         version: 66.6.0(postcss@8.5.6)(vite@6.4.1(jiti@2.6.1)(tsx@4.21.0))
 
+  packages/fonts:
+    dependencies:
+      '@fontsource-variable/space-grotesk':
+        specifier: ^5.2.10
+        version: 5.2.10
+
   packages/foundations: {}
 
   packages/unocss:
@@ -441,6 +447,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource-variable/space-grotesk@5.2.10':
+    resolution: {integrity: sha512-yJQO/o35/hAP3CFnpdFTwQku2yzJOae2HIpBmqkOVoxhhXJaQP3g+b6Jrz7u+eI7A5ZdCIf88uMWpBJdFiGr5w==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -2243,6 +2252,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.27.3':
     optional: true
+
+  '@fontsource-variable/space-grotesk@5.2.10': {}
 
   '@iconify/types@2.0.0': {}
 
