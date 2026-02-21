@@ -1,0 +1,21 @@
+{
+  "name": "@repo/constants",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./site": "./src/site.ts",
+    "./voice": "./src/voice.ts",
+    "./contact": "./src/contact.ts",
+    "./hours": "./src/hours.ts",
+    "./nav": "./src/nav.ts",
+    "./seo": "./src/seo.ts",
+    "./social": "./src/social.ts",
+    "./menu": "./src/menu.ts",
+    "./events": "./src/events.ts",
+    "./legal": "./src/legal.ts"
+  },
+  "files": [
+    "src"
+  ]
+}
