@@ -13,8 +13,10 @@
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "@repo/foundations": "workspace:*"
+  },
   "devDependencies": {
-    "@repo/foundations": "workspace:*",
     "unocss": "^66.6.0"
   },
   "peerDependencies": {

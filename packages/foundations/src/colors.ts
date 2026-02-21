@@ -25,3 +25,4 @@ export function getRootCss(): string {
     .join('\n')
   return `:root {\n${lines}\n}`
 }
+/** cssVars / getRootCss are defined but not yet injected — note the two separate resolution paths. */
