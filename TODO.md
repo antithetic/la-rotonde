@@ -41,35 +41,35 @@ _Focus for this iteration. Move items to “Goals (short term)” when you commi
 
 ### Commands (from repo root)
 
-| Command | What it does |
-|--------|----------------|
-| `pnpm i` | Install all workspace dependencies |
-| `pnpm dev` | Run all dev servers (Turbo: web + studio) |
-| `pnpm build` | Build all apps and their dependency packages |
-| `pnpm lint` | Lint (Turbo runs each package’s `lint` if defined) |
+| Command          | What it does                                                        |
+| ---------------- | ------------------------------------------------------------------- |
+| `pnpm i`         | Install all workspace dependencies                                  |
+| `pnpm dev`       | Run all dev servers (Turbo: web + studio)                           |
+| `pnpm build`     | Build all apps and their dependency packages                        |
+| `pnpm lint`      | Lint (Turbo runs each package’s `lint` if defined)                  |
 | `pnpm typecheck` | Typecheck (Turbo; add `typecheck` script in apps for full coverage) |
-| `pnpm format` | Format entire repo with Prettier |
+| `pnpm format`    | Format entire repo with Prettier                                    |
 
 ### Run a single app
 
-| Command | App |
-|--------|-----|
-| `pnpm --filter web dev` | Astro site (default port e.g. 4321) |
-| `pnpm --filter studio dev` | Sanity Studio |
-| `pnpm --filter web build` | Build web only |
-| `pnpm --filter studio build` | Build studio only |
-| `pnpm --filter studio deploy` | Deploy Studio to Sanity hosting |
+| Command                       | App                                 |
+| ----------------------------- | ----------------------------------- |
+| `pnpm --filter web dev`       | Astro site (default port e.g. 4321) |
+| `pnpm --filter studio dev`    | Sanity Studio                       |
+| `pnpm --filter web build`     | Build web only                      |
+| `pnpm --filter studio build`  | Build studio only                   |
+| `pnpm --filter studio deploy` | Deploy Studio to Sanity hosting     |
 
 ### Important paths
 
-| What | Where |
-|------|--------|
-| Sanity config & schema | `packages/sanity/src/index.ts`, `packages/sanity/src/schemaTypes/` |
-| Sanity project/dataset | `packages/constants/src/sanity.ts` |
-| Site metadata, nav, contact, SEO | `packages/constants/src/` |
-| Design layouts & components | `packages/design/src/layouts/`, `packages/design/src/components/` |
-| UnoCSS config & tokens | `packages/unocss/src/uno.config.ts`, `packages/foundations/src/` |
-| Web app entry & layout | `apps/web/src/pages/`, `apps/web/src/layouts/Layout.astro` |
+| What                             | Where                                                              |
+| -------------------------------- | ------------------------------------------------------------------ |
+| Sanity config & schema           | `packages/sanity/src/index.ts`, `packages/sanity/src/schemaTypes/` |
+| Sanity project/dataset           | `packages/constants/src/sanity.ts`                                 |
+| Site metadata, nav, contact, SEO | `packages/constants/src/`                                          |
+| Design layouts & components      | `packages/design/src/layouts/`, `packages/design/src/components/`  |
+| UnoCSS config & tokens           | `packages/unocss/src/uno.config.ts`, `packages/foundations/src/`   |
+| Web app entry & layout           | `apps/web/src/pages/`, `apps/web/src/layouts/Layout.astro`         |
 
 ### Import patterns
 
