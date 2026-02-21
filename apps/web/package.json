@@ -16,8 +16,5 @@
     "@repo/unocss": "workspace:*",
     "@unocss/astro": "^66.6.0",
     "unocss": "^66.6.0"
-  },
-  "peerDependencies": {
-    "unocss": "^66.6.0"
   }
 }
