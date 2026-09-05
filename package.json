@@ -1,0 +1,16 @@
+{
+  "name": "la-rotonde",
+  "private": true,
+  "description": "Website for La Rotonde--HiFi music and social club",
+  "scripts": {},
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.5.1",
+      "onFail": "download"
+    }
+  },
+  "devDependencies": {
+    "turbo": "^2.10.12"
+  }
+}
