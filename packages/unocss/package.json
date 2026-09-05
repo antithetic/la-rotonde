@@ -1,0 +1,13 @@
+{
+  "name": "@repo/unocss",
+  "private": true,
+  "description": "Shared Unocss config",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles/*": "./src/styles/*"
+  },
+  "devDependencies": {
+    "unocss": "^66.10.0"
+  }
+}
