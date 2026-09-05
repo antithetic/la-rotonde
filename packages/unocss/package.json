@@ -4,7 +4,8 @@
   "description": "Shared Unocss config",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./styles/*": "./src/styles/*"
   },
   "devDependencies": {
     "unocss": "^66.10.0"
