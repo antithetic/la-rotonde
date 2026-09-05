@@ -32,5 +32,6 @@ pnpm-debug.log*
 /.sanity
 
 /.turbo
+/.pnpm-store
 
 pnpm-lock.yaml
