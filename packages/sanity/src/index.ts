@@ -7,12 +7,21 @@ import { structure } from './structure'
 import { Disc3 } from 'lucide-react'
 
 import { media } from 'sanity-plugin-media'
+import { tableOfContentsPlugin } from 'sanity-plugin-table-of-contents'
 
 const title = process.env.SANITY_STUDIO_TITLE ?? 'La Rotonde'
 const projectId = 'kzqf9i5y'
 const dataset = 'production'
 
-const sharedPlugins = [structureTool({ structure }), media(), visionTool()]
+const sharedPlugins = [
+  structureTool({ structure }),
+  media(),
+  visionTool(),
+  tableOfContentsPlugin({
+    fieldNames: ['content', 'body'], // array and Portable Text fields to include in the TOC
+    documentTypes: ['page'],
+  }),
+]
 
 export const sanityConfig = defineConfig({
   // The name of the studio,
