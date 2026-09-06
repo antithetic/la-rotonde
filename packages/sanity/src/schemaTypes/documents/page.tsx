@@ -1,4 +1,4 @@
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import { defineField, defineType } from 'sanity'
 import { FileX, FileIcon } from 'lucide-react'
 
 export const page = defineType({
