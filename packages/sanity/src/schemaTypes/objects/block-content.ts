@@ -1,4 +1,5 @@
 import { defineField } from 'sanity'
+import { Subscript, Superscript } from 'lucide-react'
 
 export const blockContent = defineField({
   name: 'blockContent',
@@ -18,6 +19,8 @@ export const blockContent = defineField({
           { title: 'Emphasis', value: 'em' },
           { title: 'Underline', value: 'underline' },
           { title: 'Strikethrough', value: 'strike-through' },
+          { title: 'Superscript', value: 'sup', icon: Superscript },
+          { title: 'Subscript', value: 'sub', icon: Subscript },
           { title: 'Code', value: 'code' },
         ],
       },

@@ -35,12 +35,12 @@ export const page = defineType({
       title: 'Archived',
       type: 'boolean',
       description: (
-    <>
-      Remove this page from the public website.
-      <br />
-      Handy for page versions.
-    </>
-  ),
+        <>
+          Remove this page from the public website.
+          <br />
+          Handy for page versions.
+        </>
+      ),
       initialValue: false,
     }),
   ],
