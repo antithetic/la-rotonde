@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@repo/sanity": "workspace:*",
+    "@sanity/icons": "^5.2.1",
     "@sanity/vision": "^6.12.0",
     "lucide-react": "^1.41.0",
     "react": "^19.2.4",

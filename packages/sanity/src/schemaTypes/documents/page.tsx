@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import { defineArrayMember, defineField, defineType } from 'sanity'
 import { FileX, FileIcon } from 'lucide-react'
 
 export const page = defineType({
@@ -28,7 +28,7 @@ export const page = defineType({
     defineField({
       name: 'content',
       title: 'Page Content',
-      type: 'blockContent',
+      type: 'pageBuilder',
     }),
     defineField({
       name: 'archived',

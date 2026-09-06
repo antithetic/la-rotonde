@@ -1,3 +1,3 @@
-import { siteSettings } from './settings'
+import { siteSettings } from './site-settings'
 
 export const singletonSchemaTypes = [siteSettings]
