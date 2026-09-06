@@ -46,11 +46,4 @@ export const structure: StructureResolver = (S) =>
             .schemaType('siteSettings')
             .documentId('siteSettings'),
         ),
-      ...S.documentTypeListItems().filter(
-        (item) =>
-          item.getId() &&
-          !['page', 'siteSettings', 'media.folder', 'media.tag'].includes(
-            item.getId()!,
-          ),
-      ),
     ])
