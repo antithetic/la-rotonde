@@ -11,6 +11,7 @@ export const imageBlock = defineType({
     defineField({
       name: 'title',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'imageSplit',
@@ -29,8 +30,29 @@ export const imageBlock = defineType({
         ],
       },
       hidden: ({ parent }) => !parent?.imageSplit,
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const imageSplit = (context?.parent as { imageSplit?: boolean })
+            ?.imageSplit
+          if (imageSplit && !value)
+            return 'Orientation is required when Image Split is enabled'
+          return true
+        }),
     }),
-
+    defineField({
+      name: 'image',
+      type: 'image',
+      validation: (Rule) => Rule.required(),
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          description: 'Description of the image for accessibility',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
     defineField({
       name: 'caption',
       title: 'Image Caption',
@@ -65,10 +87,6 @@ export const imageBlock = defineType({
       },
       initialValue: 'bottom',
       hidden: ({ parent }) => !parent?.imageSplit,
-    }),
-    defineField({
-      name: 'image',
-      type: 'image',
     }),
   ],
   preview: {
