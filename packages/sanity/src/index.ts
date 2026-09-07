@@ -8,6 +8,7 @@ import { Disc3 } from 'lucide-react'
 
 import { media } from 'sanity-plugin-media'
 import { tableOfContentsPlugin } from 'sanity-plugin-table-of-contents'
+import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 
 const title = process.env.SANITY_STUDIO_TITLE ?? 'La Rotonde'
 const projectId = 'kzqf9i5y'
@@ -17,6 +18,7 @@ const sharedPlugins = [
   structureTool({ structure }),
   media(),
   visionTool(),
+  unsplashImageAsset(),
   tableOfContentsPlugin({
     fieldNames: ['content', 'body'], // array and Portable Text fields to include in the TOC
     documentTypes: ['page'],
