@@ -5,6 +5,8 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "dev:studio": "turbo run dev --filter=studio",
+    "dev:web": "turbo run dev --filter=frontend",
     "format": "prettier --write .",
     "lint": "oxlint --fix"
   },

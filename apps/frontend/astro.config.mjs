@@ -1,6 +1,6 @@
 // @ts-check
-import {defineConfig} from 'astro/config'
-import {unoConfig} from '@repo/unocss'
+import { defineConfig } from 'astro/config'
+import { unoConfig } from '@repo/unocss'
 
 import vercel from '@astrojs/vercel'
 import UnoCSS from 'unocss/astro'
