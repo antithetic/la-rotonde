@@ -11,7 +11,7 @@ export const heroBlock = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'text',
+      name: 'content',
       type: 'blockContent',
     }),
     defineField({
@@ -19,4 +19,18 @@ export const heroBlock = defineType({
       type: 'image',
     }),
   ],
+
+  preview: {
+    select: {
+      title: 'title',
+      media: 'image',
+    },
+    prepare({ title, media }) {
+      return {
+        title,
+        subtitle: 'Hero Section',
+        media,
+      }
+    },
+  },
 })
