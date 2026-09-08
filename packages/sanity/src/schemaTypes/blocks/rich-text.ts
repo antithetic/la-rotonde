@@ -8,6 +8,13 @@ export const richTextBlock = defineType({
   icon: BlockContentIcon,
   fields: [
     defineField({
+      name: 'title',
+      title: 'Title',
+      description: 'The title of the rich text block',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'content',
       type: 'array',
       of: [
@@ -42,4 +49,16 @@ export const richTextBlock = defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      content: 'content',
+    },
+    prepare({ title, content }) {
+      return {
+        title: `${title} - ${content.map((block: any) => block.children[0].text).join(' ')}`,
+        subtitle: 'Rich Text Block',
+      }
+    },
+  },
 })
