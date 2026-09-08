@@ -7,7 +7,6 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@repo/sanity": "workspace:*",
     "@sanity/icons": "^5.2.1",
     "@sanity/ui": "^4.0.7",
     "@sanity/vision": "^6.12.0",

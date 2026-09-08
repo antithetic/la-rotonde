@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig } from 'astro/config'
-import { unoConfig } from '@repo/unocss'
 
 import vercel from '@astrojs/vercel'
 import UnoCSS from 'unocss/astro'
@@ -13,5 +12,5 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
 
-  integrations: [UnoCSS(unoConfig), react()],
+  integrations: [UnoCSS(), react()],
 })

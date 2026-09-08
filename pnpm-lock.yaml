@@ -350,9 +350,6 @@ importers:
 
   packages/sanity:
     dependencies:
-      '@repo/sanity':
-        specifier: workspace:*
-        version: 'link:'
       '@sanity/icons':
         specifier: ^5.2.1
         version: 5.2.1(react@19.2.8)
