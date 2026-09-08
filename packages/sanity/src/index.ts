@@ -12,7 +12,7 @@ import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 
 const title = process.env.SANITY_STUDIO_TITLE ?? 'La Rotonde'
 const projectId = 'kzqf9i5y'
-const dataset = 'production'
+const dataset = 'development'
 
 const sharedPlugins = [
   structureTool({ structure }),
