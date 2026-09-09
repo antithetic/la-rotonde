@@ -66,7 +66,14 @@ export const page = defineType({
       ),
       to: [{ type: 'page' }],
       options: {
-        filter: '!defined(parent) && !(pageStatus in ["home", "archived"])',
+        filter: ({ document }) => {
+          const id = document?._id?.replace(/^drafts\./, '')
+          return {
+            filter:
+              '!defined(parent) && !(pageStatus in ["home", "archived"]) && !(_id in [$id, $draftId])',
+            params: { id, draftId: id ? `drafts.${id}` : '' },
+          }
+        },
         disableNew: true,
       },
       hidden: ({ document }) => document?.pageStatus === 'archived',
