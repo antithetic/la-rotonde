@@ -1,13 +1,19 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
+import type { Path } from 'sanity'
 import { HelpCircleIcon } from '@sanity/icons/HelpCircle'
 
 import { PageBuilderBlockPreview } from '../components/blockPreview'
-import { FaqPreviewList } from '../components/faqPreviewList'
+import {
+  FaqBlockPathProvider,
+  FaqPreviewList,
+  useFaqBlockPath,
+} from '../components/faqPreviewList'
 import { getBlockExcerpt } from '../components/lib/getBlockExcerpt'
 
 type FaqReference = {
   _key?: string
   _ref?: string
+  parentRefPath?: Path
 }
 
 export const faqsBlock = defineType({
@@ -85,19 +91,33 @@ export const faqsBlock = defineType({
   },
 
   components: {
+    item: (props) => (
+      <FaqBlockPathProvider path={props.path} onOpen={props.onOpen}>
+        {props.renderDefault(props)}
+      </FaqBlockPathProvider>
+    ),
     preview: (props) => {
       const preview = props as typeof props & {
         excerpt?: string
         details?: string[]
         faqRefsJson?: string
       }
+      const blockPath = useFaqBlockPath()
       const faqs: FaqReference[] = (() => {
         try {
-          return preview.faqRefsJson ? JSON.parse(preview.faqRefsJson) : []
+          return preview.faqRefsJson
+            ? (JSON.parse(preview.faqRefsJson) as FaqReference[])
+            : []
         } catch {
           return []
         }
-      })()
+      })().map((faq) => ({
+        ...faq,
+        parentRefPath:
+          blockPath && faq._key
+            ? [...blockPath, 'faqs', { _key: faq._key }]
+            : undefined,
+      }))
 
       return (
         <PageBuilderBlockPreview

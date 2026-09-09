@@ -137,7 +137,7 @@ export const imageBlock = defineType({
       return {
         title,
         image: hasImage
-          ? urlForImage(image).width(1200).height(200).fit('crop').url()
+          ? urlForImage(image).width(360).height(360).fit('crop').url()
           : undefined,
         excerpt: getBlockExcerpt(excerpt),
         layoutLabel,

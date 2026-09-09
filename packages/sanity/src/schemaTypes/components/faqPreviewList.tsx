@@ -1,14 +1,45 @@
-import { useEffect, useState } from 'react'
-import type { KeyboardEvent, MouseEvent, SyntheticEvent } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
+import type {
+  KeyboardEvent,
+  MouseEvent,
+  ReactNode,
+  SyntheticEvent,
+} from 'react'
 
 import { Card, Stack, Text } from '@sanity/ui'
-import { useClient } from 'sanity'
+import { useClient, useFormCallbacks } from 'sanity'
+import type { Path } from 'sanity'
 import { useIntentLink } from 'sanity/router'
 import { usePaneRouter } from 'sanity/structure'
 
 type FaqReference = {
   _key?: string
   _ref?: string
+  parentRefPath?: Path
+}
+
+const FaqBlockPathContext = createContext<
+  { path: Path; onOpen?: () => void } | undefined
+>(undefined)
+
+export function FaqBlockPathProvider({
+  path,
+  onOpen,
+  children,
+}: {
+  path: Path
+  onOpen?: () => void
+  children: ReactNode
+}) {
+  return (
+    <FaqBlockPathContext.Provider value={{ path, onOpen }}>
+      {children}
+    </FaqBlockPathContext.Provider>
+  )
+}
+
+export function useFaqBlockPath() {
+  return useContext(FaqBlockPathContext)?.path
 }
 
 type FaqDoc = {
@@ -60,7 +91,15 @@ function resolveQuestions(
     })
 }
 
-function FaqQuestionCard({ id, question }: { id: string; question: string }) {
+function FaqQuestionCard({
+  id,
+  question,
+  parentRefPath = [],
+}: {
+  id: string
+  question: string
+  parentRefPath?: Path
+}) {
   const paneRouter = usePaneRouter()
   const { onClick: openIntent } = useIntentLink({
     intent: 'edit',
@@ -79,7 +118,7 @@ function FaqQuestionCard({ id, question }: { id: string; question: string }) {
       paneRouter.handleEditReference({
         id,
         type: 'faq',
-        parentRefPath: [],
+        parentRefPath,
         template: { id: 'faq' },
       })
     } catch {
@@ -113,6 +152,61 @@ function FaqQuestionCard({ id, question }: { id: string; question: string }) {
     >
       <Text size={1} weight="medium" style={{ overflowWrap: 'anywhere' }}>
         {question}
+      </Text>
+    </Card>
+  )
+}
+
+function ViewAllFaqsCard() {
+  const block = useContext(FaqBlockPathContext)
+  const { onPathOpen, onPathFocus, onSetPathCollapsed } = useFormCallbacks()
+
+  const stopItemClick = (event: SyntheticEvent) => {
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
+  const openAll = (event: MouseEvent<HTMLDivElement>) => {
+    stopItemClick(event)
+
+    if (!block?.path) {
+      block?.onOpen?.()
+      return
+    }
+
+    const faqsPath = [...block.path, 'faqs']
+    onPathOpen(faqsPath)
+    onSetPathCollapsed(faqsPath, false)
+    onPathFocus(faqsPath)
+  }
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== 'Enter' && event.key !== ' ') {
+      return
+    }
+
+    event.preventDefault()
+    event.stopPropagation()
+    openAll(event as unknown as MouseEvent<HTMLDivElement>)
+  }
+
+  return (
+    <Card
+      padding={3}
+      radius={1}
+      border
+      tone="primary"
+      title="View All FAQs"
+      role="button"
+      tabIndex={0}
+      style={{ cursor: 'pointer' }}
+      onPointerDownCapture={stopItemClick}
+      onMouseDownCapture={stopItemClick}
+      onClickCapture={openAll}
+      onKeyDown={handleKeyDown}
+    >
+      <Text size={1} weight="medium" align="center">
+        View All FAQs
       </Text>
     </Card>
   )
@@ -171,13 +265,14 @@ export function FaqPreviewList({ faqs = [] }: { faqs?: FaqReference[] }) {
     const id = faq._ref as string
     const fetched = items.find((item) => item.id === id)
 
-    return (
-      fetched ?? {
+    return {
+      ...(fetched ?? {
         id,
         key: faq._key || id,
         question: 'Loading…',
-      }
-    )
+      }),
+      parentRefPath: faq.parentRefPath ?? [],
+    }
   })
 
   return (
@@ -191,16 +286,15 @@ export function FaqPreviewList({ faqs = [] }: { faqs?: FaqReference[] }) {
       }}
     >
       {cards.map((item) => (
-        <FaqQuestionCard key={item.key} id={item.id} question={item.question} />
+        <FaqQuestionCard
+          key={item.key}
+          id={item.id}
+          question={item.question}
+          parentRefPath={item.parentRefPath}
+        />
       ))}
 
-      {hasMore ? (
-        <Card padding={3} radius={1} border tone="primary">
-          <Text size={1} weight="medium" align="center">
-            View All FAQs
-          </Text>
-        </Card>
-      ) : null}
+      {hasMore ? <ViewAllFaqsCard /> : null}
     </Stack>
   )
 }
