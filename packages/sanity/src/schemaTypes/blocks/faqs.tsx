@@ -69,7 +69,7 @@ export const faqsBlock = defineType({
       heading?: string
       faqs?: FaqReference[]
     }) {
-      const count = faqs?.length ?? 0
+      const count = faqs?.filter((faq) => faq._ref)?.length ?? 0
 
       return {
         title,
