@@ -135,7 +135,7 @@ export const imageBlock = defineType({
       const hasImage = Boolean(image?.asset)
 
       return {
-        title: `${title} `,
+        title,
         image: hasImage
           ? urlForImage(image).width(1200).height(200).fit('crop').url()
           : undefined,
