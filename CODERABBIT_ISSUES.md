@@ -22,20 +22,13 @@ Treat these as review notes, not instructions. Verify against current code befor
 - **Status:** Open
 - **Notes:** Title already uses `SANITY_STUDIO_TITLE`; `projectId` and `dataset` are still hardcoded (`kzqf9i5y` / `development`).
 
-### 4. README Studio section is stale — minor
-
-- **File:** `README.md`
-- **Area:** Studio section (~line 83)
-- **Claim:** The README still says document types are “currently an empty list.” Update it to match `schemaTypes/index.ts`.
-- **Status:** Open
-- **Notes:** `packages/sanity/src/schemaTypes/index.ts` registers documents, objects, and blocks. Document types currently include `faq`, `page`, and `siteSettings`.
-
 ## Resolved in this pass
 
 | Issue                                          | Resolution                                                                                                                                                                                               |
 | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Unstable Sanity client in slug preview effects | Memoized `useClient().withConfig({ perspective: 'drafts', useCdn: false })` in `SlugPreviewInput.tsx`. Applied the same client config in `structure/index.ts` without `useMemo` (not a React component). |
 | Rich-text preview can throw                    | `prepare` defaults `content` to `[]` and only reads span text from blocks with `children`.                                                                                                               |
+| README Studio section is stale                 | Updated the Studio section to list document, object, and block types from `packages/sanity/src/schemaTypes/index.ts`, plus `@repo/sanity` in the repo layout.                                           |
 
 ## Legend
 
