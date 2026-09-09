@@ -8,6 +8,14 @@ export const siteSettings = defineType({
   icon: Cog,
   fields: [
     defineField({
+      name: 'title',
+      type: 'string',
+      hidden: true,
+      initialValue: 'Site Settings',
+      validation: (Rule) => Rule.required(),
+      readOnly: true,
+    }),
+    defineField({
       name: 'siteTitle',
       type: 'string',
       description: 'The title of the website.',
