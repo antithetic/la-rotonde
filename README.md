@@ -85,10 +85,10 @@ Sanity Studio 6 for the **La Rotonde** project (`kzqf9i5y` / `development`). The
 
 Schema types are registered in `packages/sanity/src/schemaTypes/index.ts`:
 
-| Kind      | Types                                                              |
-| --------- | ------------------------------------------------------------------ |
-| Documents | `faq`, `page`, `siteSettings`                                      |
-| Objects   | `blockContent`                                                     |
+| Kind      | Types                                                                  |
+| --------- | ---------------------------------------------------------------------- |
+| Documents | `faq`, `page`, `siteSettings`                                          |
+| Objects   | `blockContent`                                                         |
 | Blocks    | `faqsBlock`, `heroBlock`, `imageBlock`, `richTextBlock`, `pageBuilder` |
 
 ## Tooling
