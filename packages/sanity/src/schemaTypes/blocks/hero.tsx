@@ -1,10 +1,10 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
-import {BlockElementIcon} from '@sanity/icons/BlockElement'
+import { BlockElementIcon } from '@sanity/icons/BlockElement'
 
-import {PageBuilderBlockPreview} from '../components/blockPreview'
-import {getBlockExcerpt} from '../components/lib/getBlockExcerpt'
-import {urlForImage} from '../components/lib/imageURL'
+import { PageBuilderBlockPreview } from '../components/blockPreview'
+import { getBlockExcerpt } from '../components/lib/getBlockExcerpt'
+import { urlForImage } from '../components/lib/imageURL'
 
 export const heroBlock = defineType({
   name: 'heroBlock',
@@ -50,13 +50,11 @@ export const heroBlock = defineType({
       content: 'content',
     },
 
-    prepare({title, image, content = []}) {
+    prepare({ title, image, content = [] }) {
       const excerpt = content
         .flatMap(
-          (block: {children?: {text?: string}[]}) =>
-            block.children
-              ?.map((child) => child.text)
-              .filter(Boolean) ?? [],
+          (block: { children?: { text?: string }[] }) =>
+            block.children?.map((child) => child.text).filter(Boolean) ?? [],
         )
         .join(' ')
 
@@ -89,6 +87,7 @@ export const heroBlock = defineType({
           excerpt={preview.excerpt}
           details={preview.details}
           image={preview.image}
+          imageLayout="banner"
         />
       )
     },

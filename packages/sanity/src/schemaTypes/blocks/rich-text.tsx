@@ -1,11 +1,11 @@
-import {defineField, defineType} from 'sanity'
+import { defineField, defineType } from 'sanity'
 
-import {Superscript, Subscript} from 'lucide-react'
+import { Superscript, Subscript } from 'lucide-react'
 
-import {BlockContentIcon} from '@sanity/icons/BlockContent'
+import { BlockContentIcon } from '@sanity/icons/BlockContent'
 
-import {PageBuilderBlockPreview} from '../components/blockPreview'
-import {getBlockExcerpt} from '../components/lib/getBlockExcerpt'
+import { PageBuilderBlockPreview } from '../components/blockPreview'
+import { getBlockExcerpt } from '../components/lib/getBlockExcerpt'
 
 export const richTextBlock = defineType({
   name: 'richTextBlock',
@@ -27,7 +27,7 @@ export const richTextBlock = defineType({
       description: 'Display the title on the page',
       type: 'boolean',
       initialValue: false,
-      hidden: ({parent}) => !parent?.title,
+      hidden: ({ parent }) => !parent?.title,
       validation: (Rule) => Rule.required(),
     }),
 
@@ -38,20 +38,20 @@ export const richTextBlock = defineType({
         {
           type: 'block',
           styles: [
-            {title: 'Normal', value: 'normal'},
-            {title: 'Heading 2', value: 'h2'},
-            {title: 'Heading 3', value: 'h3'},
-            {title: 'Heading 4', value: 'h4'},
+            { title: 'Normal', value: 'normal' },
+            { title: 'Heading 2', value: 'h2' },
+            { title: 'Heading 3', value: 'h3' },
+            { title: 'Heading 4', value: 'h4' },
           ],
           marks: {
             decorators: [
-              {title: 'Strong', value: 'strong'},
-              {title: 'Emphasis', value: 'em'},
-              {title: 'Underline', value: 'underline'},
-              {title: 'Strikethrough', value: 'strike-through'},
-              {title: 'Superscript', value: 'sup', icon: Superscript},
-              {title: 'Subscript', value: 'sub', icon: Subscript},
-              {title: 'Code', value: 'code'},
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+              { title: 'Underline', value: 'underline' },
+              { title: 'Strikethrough', value: 'strike-through' },
+              { title: 'Superscript', value: 'sup', icon: Superscript },
+              { title: 'Subscript', value: 'sub', icon: Subscript },
+              { title: 'Code', value: 'code' },
             ],
           },
         },
@@ -59,9 +59,9 @@ export const richTextBlock = defineType({
         {
           type: 'image',
           fields: [
-            {name: 'title', title: 'Title', type: 'string'},
-            {name: 'alt', title: 'Alt', type: 'string'},
-            {name: 'caption', title: 'Caption', type: 'string'},
+            { name: 'title', title: 'Title', type: 'string' },
+            { name: 'alt', title: 'Alt', type: 'string' },
+            { name: 'caption', title: 'Caption', type: 'string' },
           ],
         },
       ],
@@ -75,21 +75,19 @@ export const richTextBlock = defineType({
       showTitle: 'showTitle',
     },
 
-    prepare({title, content = [], showTitle}) {
+    prepare({ title, content = [], showTitle }) {
       const excerpt = content
         .flatMap(
-          (block: {children?: {text?: string}[]}) =>
-            block.children
-              ?.map((child) => child.text)
-              .filter(Boolean) ?? [],
+          (block: { children?: { text?: string }[] }) =>
+            block.children?.map((child) => child.text).filter(Boolean) ?? [],
         )
         .join(' ')
 
       return {
         title,
         excerpt: getBlockExcerpt(excerpt),
+        withTitle: Boolean(showTitle),
         details: [
-          showTitle ? 'With Title' : 'Title hidden',
           `${content.length} ${content.length === 1 ? 'block' : 'blocks'}`,
         ],
       }
@@ -101,11 +99,16 @@ export const richTextBlock = defineType({
       const preview = props as typeof props & {
         excerpt?: string
         details?: string[]
+        withTitle?: boolean
       }
 
       return (
         <PageBuilderBlockPreview
-          type="Rich Text Block"
+          type={
+            preview.withTitle
+              ? 'Rich Text Block - With Title'
+              : 'Rich Text Block - Title Hidden'
+          }
           icon={BlockContentIcon}
           title={typeof preview.title === 'string' ? preview.title : undefined}
           excerpt={preview.excerpt}
