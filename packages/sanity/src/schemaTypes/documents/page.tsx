@@ -1,5 +1,3 @@
-
-
 import { defineField, defineType } from 'sanity'
 import { FileX, FileIcon, FileText } from 'lucide-react'
 import { SlugPreviewInput } from '../components/SlugPreviewInput'
@@ -43,12 +41,25 @@ export const page = defineType({
         input: SlugPreviewInput,
       },
     }),
-     defineField({
+    defineField({
       name: 'parent',
       title: 'Parent Page',
       type: 'reference',
-      description:
-        'Optional parent page. Leave empty for a top-level page.',
+      description: (
+        <>
+          Choose another page to place this page underneath it in the website
+          structure.
+          <br />
+          <br />
+          <strong>For example,</strong> if you choose “About,” this page will be
+          part of the About section and its address will be{' '}
+          <code>/about/this-page</code>.
+          <br />
+          <br />
+          Leave empty if this page does not belong under another page. It
+          will then be a top-level page.
+        </>
+      ),
       to: [{ type: 'page' }],
       options: {
         filter: '!defined(parent) && !(pageStatus in ["home", "archived"])',
@@ -134,32 +145,30 @@ export const page = defineType({
   ],
 
   preview: {
-  select: {
-    title: 'title',
-    slug: 'slug',
-    parentSlug: 'parent.slug.current',
-    pageStatus: 'pageStatus',
+    select: {
+      title: 'title',
+      slug: 'slug',
+      parentSlug: 'parent.slug.current',
+      pageStatus: 'pageStatus',
+    },
+
+    prepare(selection) {
+      const { title, slug, parentSlug, pageStatus } = selection
+
+      const status =
+        pageStatusConfig[pageStatus as keyof typeof pageStatusConfig] ??
+        pageStatusConfig.public
+
+      const pagePath = slug?.current || 'no-slug'
+      const parentPath = parentSlug // already just the string, or undefined
+
+      const path = parentPath ? `/${parentPath}/${pagePath}` : `/${pagePath}`
+
+      return {
+        title: title || 'Untitled',
+        subtitle: `${status.label} · ${path}`,
+        media: status.icon,
+      }
+    },
   },
-
-  prepare(selection) {
-    const { title, slug, parentSlug, pageStatus } = selection
-
-    const status =
-      pageStatusConfig[pageStatus as keyof typeof pageStatusConfig] ??
-      pageStatusConfig.public
-
-    const pagePath = slug?.current || 'no-slug'
-    const parentPath = parentSlug // already just the string, or undefined
-
-    const path = parentPath
-      ? `/${parentPath}/${pagePath}`
-      : `/${pagePath}`
-
-    return {
-      title: title || 'Untitled',
-      subtitle: `${status.label} · ${path}`,
-      media: status.icon,
-    }
-  },
-},
 })

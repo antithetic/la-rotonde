@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react'
 
 import { Card, Stack, Text } from '@sanity/ui'
@@ -17,9 +16,7 @@ export function SlugPreviewInput(props: SlugInputProps) {
 
   const parentRef = useFormValue(['parent', '_ref']) as string | undefined
 
-  const pageStatus = useFormValue(['pageStatus']) as
-    | PageStatus
-    | undefined
+  const pageStatus = useFormValue(['pageStatus']) as PageStatus | undefined
 
   const documentId = useFormValue(['_id']) as string | undefined
 
@@ -46,10 +43,7 @@ export function SlugPreviewInput(props: SlugInputProps) {
     }
 
     client
-      .fetch<string | null>(
-        `*[_id == $id][0].slug.current`,
-        { id: parentRef },
-      )
+      .fetch<string | null>(`*[_id == $id][0].slug.current`, { id: parentRef })
       .then(setParentSlug)
       .catch(() => setParentSlug(null))
   }, [parentRef, client])
@@ -101,11 +95,7 @@ export function SlugPreviewInput(props: SlugInputProps) {
   const showLiveLink = isPublic && !isDraft
 
   if (!path) {
-    return (
-      <Stack gap={3}>
-        {renderDefault(props)}
-      </Stack>
-    )
+    return <Stack gap={3}>{renderDefault(props)}</Stack>
   }
 
   return (
@@ -116,11 +106,8 @@ export function SlugPreviewInput(props: SlugInputProps) {
         <Text size={1} muted>
           {showLiveLink && (
             <>
-              Page is live at{' '}
-              <code>{`"${path}"`}</code>
-
+              Page is live at <code>{`"${path}"`}</code>
               <br />
-
               <span style={{ opacity: 0.7 }}>
                 {SITE_URL}
                 {path}{' '}
@@ -147,52 +134,47 @@ export function SlugPreviewInput(props: SlugInputProps) {
             </>
           )}
 
-          {
-  isHome && isSelectedHomePage && (
-    <>
-      This page is the current <strong>Home Page</strong> and is displayed at{" "}
-      <code>"/"</code>.
-      <br />
-      <span style={{ opacity: 0.7 }}>
-        {SITE_URL}/{" "}
-        <a
-          href={`${SITE_URL}/`}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            textDecoration: "underline",
-            color: "inherit",
-            opacity: 0.7,
-          }}
-        >
-          [link]
-        </a>
-      </span>
-    </>
-  )
-}
-
+          {isHome && isSelectedHomePage && (
+            <>
+              This page is the current <strong>Home Page</strong> and is
+              displayed at <code>"/"</code>.
+              <br />
+              <span style={{ opacity: 0.7 }}>
+                {SITE_URL}/{' '}
+                <a
+                  href={`${SITE_URL}/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    textDecoration: 'underline',
+                    color: 'inherit',
+                    opacity: 0.7,
+                  }}
+                >
+                  [link]
+                </a>
+              </span>
+            </>
+          )}
 
           {isHome && !isSelectedHomePage && (
-  <>
-    This page is marked as a <strong>Home Page</strong>, but it is not
-    currently assigned as the site's landing page.
-    <br />
-    <br />
-    Select it as the default Home Page in Site Settings
-    to display it at <code>"/"</code>.
-    <br />
-    <strong>Note:</strong> This page will not be accessible at{' '}
-    <code>{`"${path}"`}</code>.
-
-  </>
-)}
+            <>
+              This page is marked as a <strong>Home Page</strong>, but it is not
+              currently assigned as the site's landing page.
+              <br />
+              <br />
+              Select it as the default Home Page in Site Settings to display it
+              at <code>"/"</code>.
+              <br />
+              <strong>Note:</strong> This page will not be accessible at{' '}
+              <code>{`"${path}"`}</code>.
+            </>
+          )}
 
           {isArchived && (
             <>
               This page is <strong>archived</strong> and is not publicly
-              accessible at{' '}
-              <code>{`"${path}"`}</code>.
+              accessible at <code>{`"${path}"`}</code>.
             </>
           )}
         </Text>
