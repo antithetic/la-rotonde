@@ -1,3 +1,9 @@
+
+
+import { defineField, defineType } from 'sanity'
+import { FileX, FileIcon, FileText } from 'lucide-react'
+import { SlugPreviewInput } from '../components/SlugPreviewInput'
+
 const pageStatusConfig = {
   public: {
     label: 'Public',
@@ -12,9 +18,6 @@ const pageStatusConfig = {
     icon: FileX,
   },
 } as const
-
-import { defineField, defineType } from 'sanity'
-import { FileX, FileIcon, FileText } from 'lucide-react'
 
 export const page = defineType({
   name: 'page',
@@ -36,7 +39,9 @@ export const page = defineType({
       },
       validation: (Rule) => Rule.required(),
       hidden: ({ document }) => !document?.title,
-
+      components: {
+        input: SlugPreviewInput,
+      },
     }),
      defineField({
       name: 'parent',
