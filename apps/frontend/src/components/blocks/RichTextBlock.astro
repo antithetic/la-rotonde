@@ -1,14 +1,18 @@
 ---
 import PortableText from '@/components/sanity/PortableText.astro'
 
-const { title, content } = Astro.props
+const { title, showTitle, content } = Astro.props
 ---
 
 <!-- RichTextBlock.astro -->
 <section class="rich-text-block">
-  <header>
-    <h2>{title}</h2>
-  </header>
+  {
+    showTitle && (
+      <header class="mb-6">
+        <h2 class="text-3xl font-bold">{title}</h2>
+      </header>
+    )
+  }
 
   <div class="rich-text-block__content">
     <PortableText value={content} />

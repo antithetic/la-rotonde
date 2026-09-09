@@ -26,29 +26,28 @@ export const HOME_PAGE_QUERY = defineQuery(`
         content
       },
 
-     _type == "imageBlock" => {
-  _type,
-  _key,
-  title,
-  imageSplit,
-  orientation,
-  image {
-    ...,
-    alt
-  },
-  caption,
-  captionAlignment,
-  captionPosition
-},
-
-      _type == "richTextBlock" => {
+      _type == "imageBlock" => {
         _type,
         _key,
         title,
-        content
+        showTitle,
+        imageSplit,
+        orientation,
+        image { ..., alt },
+        caption,
+        captionAlignment,
+        captionPosition
       },
 
-      _type == "faqs" => {
+      _type == "richTextBlock" => {
+        _type,
+      _key,
+      title,
+      showTitle,
+      content
+    },
+
+      _type == "faqsBlock" => {
         _type,
         _key,
         faqs[]->{
