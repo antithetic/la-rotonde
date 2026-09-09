@@ -57,7 +57,10 @@ export const page = defineType({
           <br />
           <br />
           Leave empty if this page does not belong under another page. It
-          will then be a top-level page.
+          will then be a top-level page
+          <br />
+          <br />
+          <strong>Note:</strong> Once a page is archived, it cannot be nested under other pages.
         </>
       ),
       to: [{ type: 'page' }],
@@ -65,6 +68,7 @@ export const page = defineType({
         filter: '!defined(parent) && !(pageStatus in ["home", "archived"])',
         disableNew: true,
       },
+      hidden: ({ document }) => document?.pageStatus === 'archived',
     }),
 
     // Page Content
@@ -75,6 +79,7 @@ export const page = defineType({
       description: (
         <>
           Build your page by adding and arranging content blocks.
+          <br />
           <br />
           Use the available blocks to create the structure, hierarchy, and
           content needed to communicate the page clearly and intentionally.
