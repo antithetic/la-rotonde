@@ -16,11 +16,13 @@
     "@astrojs/vercel": "^11.0.10",
     "@repo/unocss": "workspace:*",
     "@sanity/astro": "^3.5.1",
+    "@sanity/client": "^8.6.1",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "astro": "^7.3.1",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "sanity": "^6.13.0"
   },
   "allowScripts": {
     "esbuild": true
