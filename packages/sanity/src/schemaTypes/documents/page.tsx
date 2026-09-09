@@ -96,24 +96,24 @@ export const page = defineType({
   ],
 
   preview: {
-  select: {
-    title: 'title',
-    slug: 'slug',
-    pageStatus: 'pageStatus',
+    select: {
+      title: 'title',
+      slug: 'slug',
+      pageStatus: 'pageStatus',
+    },
+
+    prepare(selection) {
+      const { title, slug, pageStatus } = selection
+
+      const status =
+        pageStatusConfig[pageStatus as keyof typeof pageStatusConfig] ??
+        pageStatusConfig.public
+
+      return {
+        title,
+        subtitle: `${status.label} · /${slug?.current || 'no-slug'}`,
+        media: status.icon,
+      }
+    },
   },
-
-  prepare(selection) {
-    const { title, slug, pageStatus } = selection
-
-    const status =
-      pageStatusConfig[pageStatus as keyof typeof pageStatusConfig] ??
-      pageStatusConfig.public
-
-    return {
-      title,
-      subtitle: `${status.label} · /${slug?.current || 'no-slug'}`,
-      media: status.icon,
-    }
-  },
-},
 })

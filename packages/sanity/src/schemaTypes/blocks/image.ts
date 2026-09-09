@@ -56,7 +56,7 @@ export const imageBlock = defineType({
     defineField({
       name: 'caption',
       title: 'Image Caption',
-      description: 'The text to display alongsidethe image',
+      description: 'The text to display alongside the image',
       type: 'blockContent',
     }),
     defineField({

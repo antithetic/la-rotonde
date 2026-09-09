@@ -1,0 +1,42 @@
+---
+import PortableText from '@/components/sanity/PortableText.astro'
+
+import { urlForImage } from '@/lib/sanity/image'
+
+const { title, content, image } = Astro.props
+
+const imageUrl = image
+  ? urlForImage(image).width(2400).auto('format').url()
+  : null
+---
+
+<section class="relative overflow-hidden aspect-[3/1] min-h-64 w-full">
+  {
+    imageUrl && (
+      <img
+        src={imageUrl}
+        alt={image?.alt ?? ''}
+        width="2400"
+        height="800"
+        loading="eager"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+    )
+  }
+
+  <div
+    class="relative z-10 flex h-full flex-col justify-end p-6 md:p-8 lg:p-12"
+  >
+    <h2 class="text-3xl font-bold md:text-4xl lg:text-5xl">
+      {title}
+    </h2>
+
+    {
+      content && (
+        <div class="mt-4 max-w-2xl">
+          <PortableText value={content} />
+        </div>
+      )
+    }
+  </div>
+</section>

@@ -1,5 +1,7 @@
 ---
-import RichTextBlock from './blocks/RichTextBlock.astro'
+import RichTextBlock from '@/components/blocks/RichTextBlock.astro'
+import HeroBlock from '@/components/blocks/HeroBlock.astro'
+import ImageBlock from '@/components/blocks/ImageBlock.astro'
 
 const { content = [] } = Astro.props
 ---
@@ -9,6 +11,12 @@ const { content = [] } = Astro.props
     switch (block._type) {
       case 'richTextBlock':
         return <RichTextBlock {...block} />
+
+      case 'heroBlock':
+        return <HeroBlock {...block} />
+
+      case 'imageBlock':
+        return <ImageBlock {...block} />
 
       default:
         return null

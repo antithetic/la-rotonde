@@ -1,0 +1,19 @@
+---
+// ./src/components/PortableText.astro
+import { PortableText as PortableTextInternal } from 'astro-portabletext'
+import PortableTextImage from '@/components/sanity/PortableTextImage.astro'
+import RichTextBlock from '@/components/blocks/RichTextBlock.astro'
+import ImageBlock from '@/components/blocks/ImageBlock.astro'
+
+const { value } = Astro.props
+
+const components = {
+  type: {
+    image: PortableTextImage,
+    richTextBlock: RichTextBlock,
+    imageBlock: ImageBlock,
+  },
+}
+---
+
+<PortableTextInternal value={value} components={components} />
