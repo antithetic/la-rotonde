@@ -1,22 +1,42 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import { loadQuery } from '@/lib/sanity/load-query'
+import { SITE_SETTINGS_QUERY } from '@/lib/sanity/queries'
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// fetch site settings from sanity
+const { data: settings } = await loadQuery<{
+  siteTitle: string | null
+  tagline: string | null
+  copyrightText: string | null
+} | null>({ query: SITE_SETTINGS_QUERY })
+
+console.log('settings', settings)
 ---
 
 <Layout>
   <div class="max-w-3xl mx-auto flex flex-col">
     <header>
       <!-- updaste to pull from sanity -->
-      <h1 class="text-3xl font-bold underline">La Rotonde</h1>
+      <h1 class="text-3xl font-bold underline">
+        {settings?.siteTitle}
+      </h1>
+      <p class="text-lg italic">{settings?.tagline}</p>
     </header>
     <main>
       <!-- sanity content goes here -->
     </main>
     <footer>
       <!-- updaste to pull from sanity -->
-      <p>Copyright 2026 La Rotonde</p>
+      <p>
+        &copy; <time data-current-year> </time> &nbsp;
+        {settings?.copyrightText}
+      </p>
     </footer>
   </div>
+
+  <script>
+    import { printCurrentYear } from '@/lib/automatic-year'
+
+    printCurrentYear()
+  </script>
 </Layout>

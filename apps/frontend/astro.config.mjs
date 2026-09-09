@@ -19,7 +19,7 @@ export default defineConfig({
     sanity({
       projectId: 'kzqf9i5y',
       dataset: 'development',
-      useCdn: !import.meta.env.PROD,
+      useCdn: false,
       apiVersion: '2026-09-01',
     }),
   ],
