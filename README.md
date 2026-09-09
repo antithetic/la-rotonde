@@ -10,7 +10,7 @@ This is a [pnpm](https://pnpm.io) + [Turborepo](https://turbo.build) monorepo. T
 la-rotonde/
 ├── apps/
 │   ├── frontend/   # Astro 7 site
-│   └── studio/     # Sanity Studio (project kzqf9i5y, dataset production)
+│   └── studio/     # Sanity Studio (project kzqf9i5y, dataset development)
 ├── packages/       # Shared packages (none yet)
 ├── package.json
 ├── pnpm-workspace.yaml
@@ -80,7 +80,7 @@ Astro 7 site using the official Basics template. Pages live in `src/pages`, shar
 
 ### Studio (`apps/studio`)
 
-Sanity Studio 6 for the **La Rotonde** project (`kzqf9i5y` / `production`). Plugins: Structure and Vision. Document types are registered in `schemaTypes/index.ts` (currently an empty list). Auto-updates are enabled in `sanity.cli.ts`. The workspace package name is `studio`.
+Sanity Studio 6 for the **La Rotonde** project (`kzqf9i5y` / `development`). Plugins: Structure and Vision. Document types are registered in `schemaTypes/index.ts` (currently an empty list). Auto-updates are enabled in `sanity.cli.ts`. The workspace package name is `studio`.
 
 ## Tooling
 

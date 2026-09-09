@@ -1,0 +1,23 @@
+---
+import RichTextBlock from '@/components/blocks/RichTextBlock.astro'
+import HeroBlock from '@/components/blocks/HeroBlock.astro'
+import ImageBlock from '@/components/blocks/ImageBlock.astro'
+import FaqsBlock from '@/components/blocks/FaqsBlock.astro'
+
+const blockComponents = {
+  richTextBlock: RichTextBlock,
+  heroBlock: HeroBlock,
+  imageBlock: ImageBlock,
+  faqsBlock: FaqsBlock,
+}
+const { content = [] } = Astro.props
+---
+
+{
+  content.map((block: any) => {
+    const Component =
+      blockComponents[block._type as keyof typeof blockComponents] ?? null
+
+    return Component && <Component {...block} />
+  })
+}

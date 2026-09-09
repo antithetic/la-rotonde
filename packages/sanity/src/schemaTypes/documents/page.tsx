@@ -1,5 +1,20 @@
+const pageStatusConfig = {
+  public: {
+    label: 'Public',
+    icon: FileIcon,
+  },
+  home: {
+    label: 'Home Page',
+    icon: FileText,
+  },
+  archived: {
+    label: 'Archived',
+    icon: FileX,
+  },
+} as const
+
 import { defineField, defineType } from 'sanity'
-import { FileX, FileIcon } from 'lucide-react'
+import { FileX, FileIcon, FileText } from 'lucide-react'
 
 export const page = defineType({
   name: 'page',
@@ -24,24 +39,83 @@ export const page = defineType({
     }),
 
     // Page Content
-    // TODO: Update to Page Builder
     defineField({
       name: 'content',
       title: 'Page Content',
       type: 'pageBuilder',
-    }),
-    defineField({
-      name: 'archived',
-      title: 'Archived',
-      type: 'boolean',
       description: (
         <>
-          Remove this page from the public website.
+          Build your page by adding and arranging content blocks.
           <br />
-          Handy for page versions.
+          Use the available blocks to create the structure, hierarchy, and
+          content of the page.
+          <br />
+          <br />
+          Add only the blocks needed to communicate the page clearly and
+          intentionally.
         </>
       ),
-      initialValue: false,
+    }),
+
+    defineField({
+      name: 'pageStatus',
+      title: 'Page Status',
+      type: 'string',
+      description: (
+        <>
+          Controls how this page is treated and displayed across the website.
+          <br />
+          <br />
+          <strong>Public:</strong> Makes the page available as a normal public
+          page on the website. Public pages can be linked to and discovered
+          through the site's navigation or other content.
+          <br />
+          <br />
+          <strong>Home Page:</strong> Designates this document as a homepage.
+          Home pages are managed separately through Site Settings and are
+          filtered out of the normal public page listings. Multiple pages can be
+          designated as Home Pages.
+          <br />
+          <br />
+          <strong>Archived:</strong> Removes the page from the public website
+          while keeping the document in Sanity for reference, previous versions,
+          or future use.
+        </>
+      ),
+      options: {
+        list: [
+          { title: 'Public', value: 'public' },
+          { title: 'Home Page', value: 'home' },
+          { title: 'Archived', value: 'archived' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'public',
+      validation: (Rule) =>
+        Rule.custom(async (value, context) => {
+          if (value === 'home') return true
+
+          const pageId = context.document?._id?.replace(/^drafts\./, '')
+          if (!pageId) return true
+
+          let isSelectedHomePage = false
+          try {
+            isSelectedHomePage = await context
+              .getClient({ apiVersion: '2026-09-01' })
+              .fetch(
+                `count(*[_id in ["siteSettings", "drafts.siteSettings"] && homePage._ref in [$pageId, $draftPageId]]) > 0`,
+                { pageId, draftPageId: `drafts.${pageId}` },
+              )
+          } catch {
+            return 'Could not verify whether this page is the site home page. Check your connection and try again.'
+          }
+
+          if (isSelectedHomePage) {
+            return 'This page is selected as the site home page in Site Settings. Choose a different home page there before setting this page to Public or Archived.'
+          }
+
+          return true
+        }),
     }),
   ],
 
@@ -49,13 +123,20 @@ export const page = defineType({
     select: {
       title: 'title',
       slug: 'slug',
-      archived: 'archived',
+      pageStatus: 'pageStatus',
     },
+
     prepare(selection) {
+      const { title, slug, pageStatus } = selection
+
+      const status =
+        pageStatusConfig[pageStatus as keyof typeof pageStatusConfig] ??
+        pageStatusConfig.public
+
       return {
-        title: selection.title,
-        subtitle: `/${selection.slug?.current || 'no-slug'}`,
-        media: selection.archived ? FileX : FileIcon,
+        title,
+        subtitle: `${status.label} · /${slug?.current || 'no-slug'}`,
+        media: status.icon,
       }
     },
   },

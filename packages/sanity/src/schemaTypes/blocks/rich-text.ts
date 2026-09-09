@@ -15,6 +15,15 @@ export const richTextBlock = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'showTitle',
+      title: 'Show Title',
+      description: 'Display the title on the page',
+      type: 'boolean',
+      initialValue: false,
+      hidden: ({ parent }) => !parent?.title,
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'content',
       type: 'array',
       of: [
@@ -49,15 +58,17 @@ export const richTextBlock = defineType({
       ],
     }),
   ],
+
   preview: {
     select: {
       title: 'title',
       content: 'content',
+      showTitle: 'showTitle',
     },
-    prepare({ title, content }) {
+    prepare({ title, content, showTitle }) {
       return {
         title: `${title} - ${content.map((block: any) => block.children[0].text).join(' ')}`,
-        subtitle: 'Rich Text Block',
+        subtitle: `Rich Text Block — ${showTitle ? 'With title' : 'No title'}`,
       }
     },
   },

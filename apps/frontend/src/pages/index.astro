@@ -1,10 +1,47 @@
 ---
 import Layout from '../layouts/Layout.astro'
+// TODO: Use for rendering homePage content
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import PageBuilder from '@/components/PageBuilder.astro'
+import { loadQuery } from '@/lib/sanity/load-query'
+import { SITE_SETTINGS_QUERY, HOME_PAGE_QUERY } from '@/lib/sanity/queries'
+
+// fetch site settings from sanity
+const { data: settings } = await loadQuery<{
+  siteTitle: string | null
+  tagline: string | null
+  copyrightText: string | null
+} | null>({ query: SITE_SETTINGS_QUERY })
+
+const { data: homePage } = await loadQuery<{
+  content: any[]
+} | null>({ query: HOME_PAGE_QUERY })
+
+console.log('settings', settings)
+console.log('homePage', homePage)
 ---
 
 <Layout>
-  <h1 class="text-3xl font-bold underline">Hello World</h1>
+  <div class="flex flex-col h-screen max-w-3xl mx-auto">
+    <header>
+      <h1 class="text-5xl font-bold underline">{settings?.siteTitle}</h1>
+      <p class="text-sm italic">{settings?.tagline}</p>
+    </header>
+
+    <main class="flex-1 p-4">
+      {homePage?.content && <PageBuilder content={homePage.content} />}
+    </main>
+
+    <footer class="mb-16">
+      <span class="text-sm italic block text-center">
+        &copy; <time data-current-year> </time> &nbsp; {settings?.copyrightText}
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    import { printCurrentYear } from '@/lib/automatic-year'
+
+    printCurrentYear()
+  </script>
 </Layout>

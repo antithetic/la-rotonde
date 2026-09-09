@@ -11,11 +11,7 @@ export const heroBlock = defineType({
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
-    defineField({
-      name: 'content',
-      type: 'blockContent',
-      validation: (Rule) => Rule.required(),
-    }),
+
     defineField({
       name: 'image',
       type: 'image',
@@ -28,6 +24,12 @@ export const heroBlock = defineType({
           validation: (Rule) => Rule.required(),
         }),
       ],
+    }),
+
+    defineField({
+      name: 'content',
+      type: 'blockContent',
+      validation: (Rule) => Rule.required(),
     }),
   ],
 
