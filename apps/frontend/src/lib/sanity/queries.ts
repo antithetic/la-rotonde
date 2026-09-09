@@ -45,11 +45,13 @@ export const HOME_PAGE_QUERY = defineQuery(`
       title,
       showTitle,
       content
-    },
+      },
 
       _type == "faqsBlock" => {
         _type,
         _key,
+        title,
+        heading,
         faqs[]->{
           _id,
           _type,
@@ -57,6 +59,6 @@ export const HOME_PAGE_QUERY = defineQuery(`
           answer
         }
       }
-    }
+    },
   }
-`)
+  `)

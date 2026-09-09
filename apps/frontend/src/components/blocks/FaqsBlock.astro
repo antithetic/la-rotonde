@@ -1,0 +1,42 @@
+---
+import PortableText from '@/components/sanity/PortableText.astro'
+
+const { heading, faqs = [] } = Astro.props
+---
+
+<section class="faqs-block">
+  {
+    heading && (
+      <header class="mb-6">
+        <h2 class="text-3xl font-bold">{heading}</h2>
+      </header>
+    )
+  }
+
+  {
+    faqs.length > 0 && (
+      <div class="divide-y">
+        {faqs.map((faq: any) => (
+          <details class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5 font-medium">
+              <span>{faq.question}</span>
+
+              <span
+                class="shrink-0 text-xl transition-transform group-open:rotate-45"
+                aria-hidden="true"
+              >
+                +
+              </span>
+            </summary>
+
+            {faq.answer && (
+              <div class="pb-5 pr-10">
+                <PortableText value={faq.answer} />
+              </div>
+            )}
+          </details>
+        ))}
+      </div>
+    )
+  }
+</section>
