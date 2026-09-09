@@ -6,13 +6,18 @@
   "exports": {
     ".": "./src/index.ts"
   },
+  "scripts": {
+    "test": "node --test --experimental-strip-types src/schemaTypes/components/incomingRefListenLifecycle.test.ts"
+  },
   "dependencies": {
     "@sanity/icons": "^5.2.1",
+    "@sanity/image-url": "^2.1.1",
     "@sanity/ui": "^4.0.7",
     "@sanity/vision": "^6.12.0",
     "lucide-react": "^1.41.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "rxjs": "^7.8.2",
     "sanity": "^6.13.0",
     "sanity-plugin-asset-source-unsplash": "^7.0.25",
     "sanity-plugin-media": "^6.1.8",

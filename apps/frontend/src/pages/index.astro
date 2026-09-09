@@ -22,9 +22,9 @@ console.log('homePage', homePage)
 ---
 
 <Layout>
-  <div class="flex flex-col h-screen max-w-3xl mx-auto">
-    <header>
-      <h1 class="text-5xl font-bold underline">{settings?.siteTitle}</h1>
+  <div class="flex flex-col h-screen max-w-3xl mx-auto mb-48">
+    <header class="mb-16">
+      <h1 class="text-5xl font-bold underline mb-4">{settings?.siteTitle}</h1>
       <p class="text-sm italic">{settings?.tagline}</p>
     </header>
 
@@ -32,8 +32,8 @@ console.log('homePage', homePage)
       {homePage?.content && <PageBuilder content={homePage.content} />}
     </main>
 
-    <footer class="mb-16">
-      <span class="text-sm italic block text-center">
+    <footer>
+      <span class="text-sm italic block text-center mb-48">
         &copy; <time data-current-year> </time> &nbsp; {settings?.copyrightText}
       </span>
     </footer>

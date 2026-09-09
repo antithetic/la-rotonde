@@ -7,7 +7,7 @@ const SITE_URL = 'https://larotonde.cafe'
 
 type PageStatus = 'public' | 'home' | 'archived'
 
-export function SlugPreviewInput(props: SlugInputProps) {
+export function slugPreviewInput(props: SlugInputProps) {
   const { renderDefault } = props
 
   const baseClient = useClient({ apiVersion: '2026-09-01' })

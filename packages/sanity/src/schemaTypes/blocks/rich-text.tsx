@@ -1,11 +1,17 @@
 import { defineField, defineType } from 'sanity'
+
 import { Superscript, Subscript } from 'lucide-react'
+
 import { BlockContentIcon } from '@sanity/icons/BlockContent'
+
+import { PageBuilderBlockPreview } from '../components/blockPreview'
+import { getBlockExcerpt } from '../components/lib/getBlockExcerpt'
 
 export const richTextBlock = defineType({
   name: 'richTextBlock',
   type: 'object',
   icon: BlockContentIcon,
+
   fields: [
     defineField({
       name: 'title',
@@ -14,6 +20,7 @@ export const richTextBlock = defineType({
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
       name: 'showTitle',
       title: 'Show Title',
@@ -23,6 +30,7 @@ export const richTextBlock = defineType({
       hidden: ({ parent }) => !parent?.title,
       validation: (Rule) => Rule.required(),
     }),
+
     defineField({
       name: 'content',
       type: 'array',
@@ -47,6 +55,7 @@ export const richTextBlock = defineType({
             ],
           },
         },
+
         {
           type: 'image',
           fields: [
@@ -65,6 +74,7 @@ export const richTextBlock = defineType({
       content: 'content',
       showTitle: 'showTitle',
     },
+
     prepare({ title, content = [], showTitle }) {
       const excerpt = content
         .flatMap(
@@ -74,9 +84,37 @@ export const richTextBlock = defineType({
         .join(' ')
 
       return {
-        title: excerpt ? `${title} - ${excerpt}` : title,
-        subtitle: `Rich Text Block — ${showTitle ? 'With title' : 'No title'}`,
+        title,
+        excerpt: getBlockExcerpt(excerpt),
+        withTitle: Boolean(showTitle),
+        details: [
+          `${content.length} ${content.length === 1 ? 'block' : 'blocks'}`,
+        ],
       }
+    },
+  },
+
+  components: {
+    preview: (props) => {
+      const preview = props as typeof props & {
+        excerpt?: string
+        details?: string[]
+        withTitle?: boolean
+      }
+
+      return (
+        <PageBuilderBlockPreview
+          type={
+            preview.withTitle
+              ? 'Rich Text Block - With Title'
+              : 'Rich Text Block - Title Hidden'
+          }
+          icon={BlockContentIcon}
+          title={typeof preview.title === 'string' ? preview.title : undefined}
+          excerpt={preview.excerpt}
+          details={preview.details}
+        />
+      )
     },
   },
 })
