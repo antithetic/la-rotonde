@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { Card, Stack, Text } from '@sanity/ui'
 import { SlugInputProps, useClient, useFormValue } from 'sanity'
@@ -10,7 +10,15 @@ type PageStatus = 'public' | 'home' | 'archived'
 export function SlugPreviewInput(props: SlugInputProps) {
   const { renderDefault } = props
 
-  const client = useClient({ apiVersion: '2026-09-01' })
+  const baseClient = useClient({ apiVersion: '2026-09-01' })
+  const client = useMemo(
+    () =>
+      baseClient.withConfig({
+        perspective: 'drafts',
+        useCdn: false,
+      }),
+    [baseClient],
+  )
 
   const slugValue = useFormValue(['slug', 'current']) as string | undefined
 

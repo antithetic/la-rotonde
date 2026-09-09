@@ -27,6 +27,7 @@ export const page = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -93,6 +94,7 @@ export const page = defineType({
           content needed to communicate the page clearly and intentionally.
         </>
       ),
+      validation: (Rule) => Rule.required(),
     }),
 
     defineField({
@@ -130,7 +132,7 @@ export const page = defineType({
       },
       initialValue: 'public',
       validation: (Rule) =>
-        Rule.custom(async (value, context) => {
+        Rule.required().custom(async (value, context) => {
           if (value === 'home') return true
 
           const pageId = context.document?._id?.replace(/^drafts\./, '')

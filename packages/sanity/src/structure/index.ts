@@ -17,7 +17,9 @@ export const structure: StructureResolver = (S, context) =>
         .icon(FileIcon)
         .title('Pages')
         .child(async () => {
-          const client = context.getClient({ apiVersion: '2026-09-01' })
+          const client = context
+            .getClient({ apiVersion: '2026-09-01' })
+            .withConfig({ perspective: 'drafts', useCdn: false })
           const pages = await client.fetch(
             `*[_type == "page"] | order(_updatedAt desc){ _id }`,
           )
