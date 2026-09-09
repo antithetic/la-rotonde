@@ -1,6 +1,6 @@
 import { faqsBlock } from './faqs'
 import { heroBlock } from './hero'
-import { imageBlock } from './split-image'
+import { imageBlock } from './image'
 
 import { richTextBlock } from './rich-text'
 
