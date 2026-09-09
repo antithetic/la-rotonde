@@ -1,4 +1,4 @@
-import { faqsType } from './faqs'
+import { faqsBlock } from './faqs'
 import { heroBlock } from './hero'
 import { imageBlock } from './split-image'
 
@@ -8,7 +8,7 @@ import { pageBuilderType } from './page-builder'
 
 export const blockSchemaTypes = [
   // Blocks
-  faqsType,
+  faqsBlock,
   imageBlock,
   heroBlock,
   richTextBlock,
