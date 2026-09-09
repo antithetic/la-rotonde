@@ -142,6 +142,7 @@ export const page = defineType({
           try {
             isSelectedHomePage = await context
               .getClient({ apiVersion: '2026-09-01' })
+              .withConfig({ perspective: 'raw', useCdn: false })
               .fetch(
                 `count(*[_id in ["siteSettings", "drafts.siteSettings"] && homePage._ref in [$pageId, $draftPageId]]) > 0`,
                 { pageId, draftPageId: `drafts.${pageId}` },
