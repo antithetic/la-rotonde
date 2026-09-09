@@ -2,7 +2,7 @@
 
 Website for **La Rotonde**, a HiFi music and social club.
 
-This is a [pnpm](https://pnpm.io) + [Turborepo](https://turbo.build) monorepo. The public site is an [Astro](https://astro.build) app; content is managed in [Sanity Studio](https://www.sanity.io). The two apps are scaffolded but not connected yet — the frontend still ships the Astro starter page, and the Studio schema is empty.
+This is a [pnpm](https://pnpm.io) + [Turborepo](https://turbo.build) monorepo. The public site is an [Astro](https://astro.build) app; content is managed in [Sanity Studio](https://www.sanity.io). Shared Studio config and schema live in `@repo/sanity`. The frontend is not connected yet — it still ships the Astro starter page.
 
 ## Repository layout
 
@@ -10,8 +10,9 @@ This is a [pnpm](https://pnpm.io) + [Turborepo](https://turbo.build) monorepo. T
 la-rotonde/
 ├── apps/
 │   ├── frontend/   # Astro 7 site
-│   └── studio/     # Sanity Studio (project kzqf9i5y, dataset production)
-├── packages/       # Shared packages (none yet)
+│   └── studio/     # Sanity Studio (project kzqf9i5y, dataset development)
+├── packages/
+│   └── sanity/     # Shared Sanity config and schema (@repo/sanity)
 ├── package.json
 ├── pnpm-workspace.yaml
 └── turbo.json
@@ -35,10 +36,10 @@ pnpm dev
 
 `pnpm dev` starts both apps through Turbo:
 
-| App      | Command (from root)          | Local URL             |
-| -------- | ---------------------------- | --------------------- |
-| Frontend | `pnpm --filter frontend dev` | http://localhost:4321 |
-| Studio   | `pnpm --filter studio dev`   | http://localhost:3333 |
+| App      | Command (from root)          | Local URL               |
+| -------- | ---------------------------- | ----------------------- |
+| Frontend | `pnpm --filter frontend dev` | <http://localhost:4321> |
+| Studio   | `pnpm --filter studio dev`   | <http://localhost:3333> |
 
 To preview a production frontend build:
 
@@ -80,7 +81,15 @@ Astro 7 site using the official Basics template. Pages live in `src/pages`, shar
 
 ### Studio (`apps/studio`)
 
-Sanity Studio 6 for the **La Rotonde** project (`kzqf9i5y` / `production`). Plugins: Structure and Vision. Document types are registered in `schemaTypes/index.ts` (currently an empty list). Auto-updates are enabled in `sanity.cli.ts`. The workspace package name is `studio`.
+Sanity Studio 6 for the **La Rotonde** project (`kzqf9i5y` / `development`). The app re-exports config from `@repo/sanity` (`packages/sanity`). Plugins: Structure, Media, Vision, Unsplash, and Table of Contents. Auto-updates are enabled in `sanity.cli.ts`. The workspace package name is `studio`.
+
+Schema types are registered in `packages/sanity/src/schemaTypes/index.ts`:
+
+| Kind      | Types                                                                  |
+| --------- | ---------------------------------------------------------------------- |
+| Documents | `faq`, `page`, `siteSettings`                                          |
+| Objects   | `blockContent`                                                         |
+| Blocks    | `faqsBlock`, `heroBlock`, `imageBlock`, `richTextBlock`, `pageBuilder` |
 
 ## Tooling
 

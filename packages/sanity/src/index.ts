@@ -10,9 +10,9 @@ import { media } from 'sanity-plugin-media'
 import { tableOfContentsPlugin } from 'sanity-plugin-table-of-contents'
 import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 
-const title = process.env.SANITY_STUDIO_TITLE ?? 'La Rotonde'
+const title = 'La Rotonde'
 const projectId = 'kzqf9i5y'
-const dataset = 'production'
+const dataset = 'development'
 
 const sharedPlugins = [
   structureTool({ structure }),
