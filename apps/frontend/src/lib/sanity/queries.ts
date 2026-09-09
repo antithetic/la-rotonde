@@ -5,7 +5,7 @@ export const SITE_SETTINGS_QUERY = defineQuery(
 )
 
 export const HOME_PAGE_QUERY = defineQuery(`
-  *[_id == "siteSettings"][0].homePage->{
+  *[_id == "siteSettings" && homePage->pageStatus == "home"][0].homePage->{
     _id,
     _type,
     title,

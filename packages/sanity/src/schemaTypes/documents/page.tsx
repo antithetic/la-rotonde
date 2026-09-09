@@ -39,7 +39,6 @@ export const page = defineType({
     }),
 
     // Page Content
-    // TODO: Update to Page Builder
     defineField({
       name: 'content',
       title: 'Page Content',
@@ -92,6 +91,31 @@ export const page = defineType({
         layout: 'radio',
       },
       initialValue: 'public',
+      validation: (Rule) =>
+        Rule.custom(async (value, context) => {
+          if (value === 'home') return true
+
+          const pageId = context.document?._id?.replace(/^drafts\./, '')
+          if (!pageId) return true
+
+          let isSelectedHomePage = false
+          try {
+            isSelectedHomePage = await context
+              .getClient({ apiVersion: '2026-09-01' })
+              .fetch(
+                `count(*[_id in ["siteSettings", "drafts.siteSettings"] && homePage._ref in [$pageId, $draftPageId]]) > 0`,
+                { pageId, draftPageId: `drafts.${pageId}` },
+              )
+          } catch {
+            return 'Could not verify whether this page is the site home page. Check your connection and try again.'
+          }
+
+          if (isSelectedHomePage) {
+            return 'This page is selected as the site home page in Site Settings. Choose a different home page there before setting this page to Public or Archived.'
+          }
+
+          return true
+        }),
     }),
   ],
 
