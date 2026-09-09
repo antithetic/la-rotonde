@@ -1,6 +1,5 @@
 import { Box, Card, Stack, Text } from '@sanity/ui'
-import { ComponentType, useEffect, useState } from 'react'
-import { Subscription } from 'rxjs'
+import { ComponentType, useEffect, useMemo, useState } from 'react'
 import {
   getIdPair,
   ObjectInputProps,
@@ -11,74 +10,72 @@ import {
 } from 'sanity'
 import { usePaneRouter } from 'sanity/structure'
 import sleep from '../../utils/sleep'
+import { createIncomingRefListenLifecycle } from './incomingRefListenLifecycle'
 
 // type for the incoming reference results
 type IncomingRefResult = { _type: string; _id: string; title: string }[]
 
+const DOCUMENT_TYPES = ['page', 'faq']
+
 // * * * MAIN COMPONENT * * *
-export const IncomingRefIndicator: ComponentType<ObjectInputProps> = (props) => {
+export const IncomingRefIndicator: ComponentType<ObjectInputProps> = (
+  props,
+) => {
   // * Value you will need for the query
   const documentId = useFormValue(['_id']) as string
   // * Get the published ID
   const { publishedId } = getIdPair(documentId)
 
-  // * Narrow down, which document types you want to show incoming references from
-  const documentTypes = ['page', 'testDocument']
-
   // * Studio client
-  const client = useClient({ apiVersion: '2025-08-01' }).withConfig({
-    perspective: 'drafts',
-  })
+  const studioClient = useClient({ apiVersion: '2025-08-01' })
+  const client = useMemo(
+    () => studioClient.withConfig({ perspective: 'drafts' }),
+    [studioClient],
+  )
 
   // * State to store the incoming references
   const [incomingRefs, setIncomingRefs] = useState<IncomingRefResult>([])
 
-  //* listen for changes incoming references
-  let subscription: Subscription
-
   useEffect(() => {
-    // Query: fetch all incoming references to this document if they match the document types
-    const queryWithNarrowedTypes = `*[ _type in $types && references($id) ]{ _id, _type, title }`
+    const lifecycle = createIncomingRefListenLifecycle()
+
     // * Query: fetch all incoming references to this document
     const query = `*[ references($id) ]{ _id, _type, title }`
 
     // add your own query params here if you need them
-    const params = { id: publishedId, types: documentTypes }
+    const params = { id: publishedId, types: DOCUMENT_TYPES }
 
     const fetchIncomingRefList = async (listening = false) => {
       // listen but with a timeout to debounce the listener
-      listening && (await sleep(1500))
+      if (listening) {
+        await sleep(1500)
+      }
+      if (lifecycle.isDisposed()) return
 
       // * Fetch the incoming references
       await client
         .fetch(query, params)
-        .then((res) => {
+        .then((res: IncomingRefResult) => {
+          if (lifecycle.isDisposed()) return
           setIncomingRefs(res)
         })
-        .catch((err) => {
+        .catch((err: Error) => {
           console.error(err.message)
         })
     }
 
-    const listen = () => {
-      subscription = client
+    const listen = () =>
+      client
         .listen(query, params, {
           visibility: 'query',
           tag: `incomingRefs-for-${publishedId}`,
         })
         .subscribe(() => fetchIncomingRefList(true))
-    }
 
-    fetchIncomingRefList().then(listen)
+    lifecycle.start(() => fetchIncomingRefList(), listen)
 
-    // * Cleanup
-    // Never forget to unsubscribe from the listener
-    return function cleanup() {
-      if (subscription) {
-        subscription.unsubscribe()
-      }
-    }
-  }, [])
+    return () => lifecycle.dispose()
+  }, [client, publishedId])
 
   return (
     <Card>
@@ -101,14 +98,23 @@ export const IncomingRefIndicator: ComponentType<ObjectInputProps> = (props) => 
 }
 
 // * * * REFERENCE LINK COMPONENT * * *
-const ReferenceLink: ComponentType<{ _type: string; _id: string; title: string }> = (props) => {
+const ReferenceLink: ComponentType<{
+  _type: string
+  _id: string
+  title: string
+}> = (props: { _type: string; _id: string; title: string }) => {
   const { _id, _type, title } = props
   const schemaType = useSchema().get(_type)
   const Icon = schemaType?.icon
 
   const { ReferenceChildLink } = usePaneRouter()
   return (
-    <Card as="li" style={{ cursor: 'pointer', textDecoration: 'none' }} shadow={1} radius={3}>
+    <Card
+      as="li"
+      style={{ cursor: 'pointer', textDecoration: 'none' }}
+      shadow={1}
+      radius={3}
+    >
       <ReferenceChildLink
         documentId={_id}
         documentType={_type}
@@ -129,5 +135,7 @@ const ReferenceLink: ComponentType<{ _type: string; _id: string; title: string }
 // * * * RENDER EACH INCOMING REF * * *
 
 const renderIncomingRefs = (incomingRefs: IncomingRefResult) => {
-  return incomingRefs?.map((reference) => <ReferenceLink {...reference} key={reference._id} />)
+  return incomingRefs?.map((reference) => (
+    <ReferenceLink {...reference} key={reference._id} />
+  ))
 }
