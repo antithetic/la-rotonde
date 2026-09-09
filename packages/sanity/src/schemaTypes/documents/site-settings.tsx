@@ -42,13 +42,20 @@ export const siteSettings = defineType({
         Rule.required().custom(async (value, context) => {
           if (!value?._ref) return true
 
-          const page = await context
-            .getClient({ apiVersion: '2026-09-01' })
-            .fetch(`*[_id == $id][0]{ pageStatus }`, {
-              id: value._ref,
-            })
-
-          if (page?.pageStatus !== 'home') {
+          let page
+          try {
+            page = await context
+              .getClient({ apiVersion: '2026-09-01' })
+              .fetch(`*[_id == $id][0]{ pageStatus }`, {
+                id: value._ref,
+              })
+          } catch {
+            return 'Could not verify the selected page. Check your connection and try again.'
+          }
+          if (!page) {
+            return 'The selected page is not published. Publish the page before you select it as the home page.'
+          }
+          if (page.pageStatus !== 'home') {
             return 'The selected page must have a Page Status of Home Page.'
           }
 
