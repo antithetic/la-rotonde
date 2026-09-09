@@ -23,18 +23,38 @@ export const siteSettings = defineType({
     defineField({
       name: 'homePage',
       type: 'reference',
+      options: {
+    filter: 'pageStatus == $pageStatus',
+    filterParams: {
+      pageStatus: 'home',
+    },
+  },
       description: (
         <>
-          Select the page to be displayed on the homepage.
+          Select the page to be displayed on the website landing page.
           <br />
-          <strong>Note:</strong> The page must be published and have a valid
-          slug.
-          <br />
-          This will be the landing page for the website.
+          <strong>Note:</strong> The selected page must be published and have a valid
+          slug and be designated as a home page.
         </>
       ),
       to: [{ type: 'page' }],
-      validation: (Rule) => Rule.required(),
+       validation: (Rule) =>
+    Rule.required().custom(async (value, context) => {
+      if (!value?._ref) return true
+
+      const page = await context
+        .getClient({ apiVersion: '2025-01-01' })
+        .fetch(`*[_id == $id][0]{ pageStatus }`, {
+          id: value._ref,
+        })
+
+      if (page?.pageStatus !== 'home') {
+        return 'The selected page must have a Page Status of Home Page.'
+      }
+
+      return true
+    }),
+
     }),
     defineField({
       name: 'copyrightText',
