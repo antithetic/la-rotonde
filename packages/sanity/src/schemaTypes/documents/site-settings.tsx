@@ -23,11 +23,12 @@ export const siteSettings = defineType({
     defineField({
       name: 'homePage',
       type: 'reference',
-      description:(
+      description: (
         <>
           Select the page to be displayed on the homepage.
           <br />
-          <strong>Note:</strong> The page must be published and have a valid slug.
+          <strong>Note:</strong> The page must be published and have a valid
+          slug.
           <br />
           This will be the landing page for the website.
         </>

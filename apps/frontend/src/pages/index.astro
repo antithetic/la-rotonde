@@ -14,30 +14,24 @@ console.log('settings', settings)
 ---
 
 <Layout>
-  <div class="mx-auto flex min-h-dvh max-w-3xl flex-col gap-4">
-    <header class="flex-none">
-      <!-- updaste to pull from sanity -->
-      <h1 class="text-3xl font-bold underline">
-        {settings?.siteTitle}
-      </h1>
-      <p class="text-lg italic">{settings?.tagline}</p>
+  <div class="flex flex-col h-screen max-w-3xl mx-auto">
+    <header>
+      <h1 class="text-5xl font-bold underline">{settings?.siteTitle}</h1>
+      <p class="text-sm italic">{settings?.tagline}</p>
     </header>
-    <main class="flex-1">
-      <!-- sanity content goes here -->
-      <p>home page content</p>
-    </main>
-    <footer class="text-center text-md flex-none">
-      <!-- updaste to pull from sanity -->
-      <p>
-        &copy; <time data-current-year> </time> &nbsp;
-        {settings?.copyrightText}
-      </p>
+
+    <main class="flex-1 p-4">Main content</main>
+
+    <footer class="mb-16">
+      <span class="text-sm italic block text-center">
+        &copy; <time data-current-year> </time> &nbsp; {settings?.copyrightText}
+      </span>
     </footer>
   </div>
+
+  <script>
+    import { printCurrentYear } from '@/lib/automatic-year'
+
+    printCurrentYear()
+  </script>
 </Layout>
-
-<script>
-  import { printCurrentYear } from '@/lib/automatic-year'
-
-  printCurrentYear()
-</script>
