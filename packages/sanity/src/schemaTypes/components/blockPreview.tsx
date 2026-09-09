@@ -11,6 +11,7 @@ interface PageBuilderBlockPreviewProps {
   detailsItalic?: boolean
   image?: string
   imageLayout?: 'banner' | 'thumbnail'
+  aside?: ReactNode
 }
 
 export function PageBuilderBlockPreview({
@@ -22,6 +23,7 @@ export function PageBuilderBlockPreview({
   detailsItalic = false,
   image,
   imageLayout = 'banner',
+  aside,
 }: PageBuilderBlockPreviewProps) {
   const titleText = typeof title === 'string' ? title : undefined
   const imageUrl = typeof image === 'string' ? image : undefined
@@ -108,7 +110,14 @@ export function PageBuilderBlockPreview({
           </Flex>
         ) : null}
 
-        {imageLayout === 'banner' || !imageUrl ? content : null}
+        {aside ? (
+          <Flex align="flex-start" gap={4}>
+            <Stack flex={1}>{content}</Stack>
+            {aside}
+          </Flex>
+        ) : null}
+
+        {(imageLayout === 'banner' || !imageUrl) && !aside ? content : null}
 
         {details.length > 0 ? (
           <Flex gap={4} wrap="wrap">
