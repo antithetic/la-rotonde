@@ -56,11 +56,12 @@ export const page = defineType({
           <code>/about/this-page</code>.
           <br />
           <br />
-          Leave empty if this page does not belong under another page. It
-          will then be a top-level page
+          Leave empty if this page does not belong under another page. It will
+          then be a top-level page
           <br />
           <br />
-          <strong>Note:</strong> Once a page is archived, it cannot be nested under other pages.
+          <strong>Note:</strong> Once a page is archived, it cannot be nested
+          under other pages.
         </>
       ),
       to: [{ type: 'page' }],
