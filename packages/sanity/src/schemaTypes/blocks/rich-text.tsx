@@ -89,7 +89,7 @@ export const richTextBlock = defineType({
         title,
         excerpt: getBlockExcerpt(excerpt),
         details: [
-          showTitle ? 'With title' : 'Title hidden',
+          showTitle ? 'With Title' : 'Title hidden',
           `${content.length} ${content.length === 1 ? 'block' : 'blocks'}`,
         ],
       }
@@ -105,7 +105,7 @@ export const richTextBlock = defineType({
 
       return (
         <PageBuilderBlockPreview
-          type="Rich Text"
+          type="Rich Text Block"
           icon={BlockContentIcon}
           title={typeof preview.title === 'string' ? preview.title : undefined}
           excerpt={preview.excerpt}
