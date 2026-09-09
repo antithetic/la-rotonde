@@ -43,7 +43,7 @@ export const siteSettings = defineType({
           if (!value?._ref) return true
 
           const page = await context
-            .getClient({ apiVersion: '2025-01-01' })
+            .getClient({ apiVersion: '2026-09-01' })
             .fetch(`*[_id == $id][0]{ pageStatus }`, {
               id: value._ref,
             })
