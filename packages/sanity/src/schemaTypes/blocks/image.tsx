@@ -54,7 +54,11 @@ export const imageBlock = defineType({
     defineField({
       name: 'image',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
       validation: (Rule) => Rule.required(),
+
       fields: [
         defineField({
           name: 'alt',
