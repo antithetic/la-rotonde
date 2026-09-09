@@ -1,3 +1,7 @@
+import { defineField, defineType } from 'sanity'
+import { FileX, FileIcon, FileText } from 'lucide-react'
+import { SlugPreviewInput } from '../components/SlugPreviewInput'
+
 const pageStatusConfig = {
   public: {
     label: 'Public',
@@ -13,9 +17,6 @@ const pageStatusConfig = {
   },
 } as const
 
-import { defineField, defineType } from 'sanity'
-import { FileX, FileIcon, FileText } from 'lucide-react'
-
 export const page = defineType({
   name: 'page',
   title: 'Page',
@@ -26,6 +27,7 @@ export const page = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -36,6 +38,46 @@ export const page = defineType({
       },
       validation: (Rule) => Rule.required(),
       hidden: ({ document }) => !document?.title,
+      components: {
+        input: SlugPreviewInput,
+      },
+    }),
+    defineField({
+      name: 'parent',
+      title: 'Parent Page',
+      type: 'reference',
+      description: (
+        <>
+          Choose another page to place this page underneath it in the website
+          structure.
+          <br />
+          <br />
+          <strong>For example,</strong> if you choose “About,” this page will be
+          part of the About section and its address will be{' '}
+          <code>/about/this-page</code>.
+          <br />
+          <br />
+          Leave empty if this page does not belong under another page. It will
+          then be a top-level page
+          <br />
+          <br />
+          <strong>Note:</strong> Once a page is archived, it cannot be nested
+          under other pages.
+        </>
+      ),
+      to: [{ type: 'page' }],
+      options: {
+        filter: ({ document }) => {
+          const id = document?._id?.replace(/^drafts\./, '')
+          return {
+            filter:
+              '!defined(parent) && !(pageStatus in ["home", "archived"]) && !(_id in [$id, $draftId])',
+            params: { id, draftId: id ? `drafts.${id}` : '' },
+          }
+        },
+        disableNew: true,
+      },
+      hidden: ({ document }) => document?.pageStatus === 'archived',
     }),
 
     // Page Content
@@ -47,14 +89,12 @@ export const page = defineType({
         <>
           Build your page by adding and arranging content blocks.
           <br />
+          <br />
           Use the available blocks to create the structure, hierarchy, and
-          content of the page.
-          <br />
-          <br />
-          Add only the blocks needed to communicate the page clearly and
-          intentionally.
+          content needed to communicate the page clearly and intentionally.
         </>
       ),
+      validation: (Rule) => Rule.required(),
     }),
 
     defineField({
@@ -92,7 +132,7 @@ export const page = defineType({
       },
       initialValue: 'public',
       validation: (Rule) =>
-        Rule.custom(async (value, context) => {
+        Rule.required().custom(async (value, context) => {
           if (value === 'home') return true
 
           const pageId = context.document?._id?.replace(/^drafts\./, '')
@@ -123,19 +163,25 @@ export const page = defineType({
     select: {
       title: 'title',
       slug: 'slug',
+      parentSlug: 'parent.slug.current',
       pageStatus: 'pageStatus',
     },
 
     prepare(selection) {
-      const { title, slug, pageStatus } = selection
+      const { title, slug, parentSlug, pageStatus } = selection
 
       const status =
         pageStatusConfig[pageStatus as keyof typeof pageStatusConfig] ??
         pageStatusConfig.public
 
+      const pagePath = slug?.current || 'no-slug'
+      const parentPath = parentSlug // already just the string, or undefined
+
+      const path = parentPath ? `/${parentPath}/${pagePath}` : `/${pagePath}`
+
       return {
-        title,
-        subtitle: `${status.label} · /${slug?.current || 'no-slug'}`,
+        title: title || 'Untitled',
+        subtitle: `${status.label} · ${path}`,
         media: status.icon,
       }
     },
