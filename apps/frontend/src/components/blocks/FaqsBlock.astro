@@ -4,10 +4,10 @@ import PortableText from '@/components/sanity/PortableText.astro'
 const { heading, faqs = [] } = Astro.props
 ---
 
-<section class="faqs-block">
+<section class="faqs-block mb-48 mx-auto max-w-[65ch]">
   {
     heading && (
-      <header class="mb-6">
+      <header class="">
         <h2 class="text-3xl font-bold">{heading}</h2>
       </header>
     )

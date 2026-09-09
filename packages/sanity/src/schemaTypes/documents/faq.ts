@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity'
 import { CircleQuestionMark } from 'lucide-react'
+import { IncomingRefIndicator } from '../components/IncomingReferenceDocumentLevel'
 
 export const faq = defineType({
   name: 'faq',
@@ -8,6 +9,9 @@ export const faq = defineType({
     'A frequently asked question. Keep the answer concise and easy to understand.',
   type: 'document',
   icon: CircleQuestionMark,
+  components: {
+    input: IncomingRefIndicator,
+  },
 
   fields: [
     defineField({

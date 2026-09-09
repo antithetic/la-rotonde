@@ -39,7 +39,7 @@ const captionPositionClass =
 const isImageRight = orientation === 'imageRight'
 ---
 
-<section class="image-block">
+<section class="image-block mb-48">
   {
     imageSplit ? (
       <div class:list={['grid gap-8 md:grid-cols-2']}>
@@ -91,7 +91,7 @@ const isImageRight = orientation === 'imageRight'
                   captionAlignmentClass,
                 ]}
               >
-                <div class="w-full">
+                <div class="w-full text-4xl">
                   <PortableText value={caption} />
                 </div>
               </div>
