@@ -36,6 +36,19 @@ export const page = defineType({
       },
       validation: (Rule) => Rule.required(),
       hidden: ({ document }) => !document?.title,
+
+    }),
+     defineField({
+      name: 'parent',
+      title: 'Parent Page',
+      type: 'reference',
+      description:
+        'Optional parent page. Leave empty for a top-level page.',
+      to: [{ type: 'page' }],
+      options: {
+        filter: '!defined(parent) && !(pageStatus in ["home", "archived"])',
+        disableNew: true,
+      },
     }),
 
     // Page Content
@@ -48,11 +61,7 @@ export const page = defineType({
           Build your page by adding and arranging content blocks.
           <br />
           Use the available blocks to create the structure, hierarchy, and
-          content of the page.
-          <br />
-          <br />
-          Add only the blocks needed to communicate the page clearly and
-          intentionally.
+          content needed to communicate the page clearly and intentionally.
         </>
       ),
     }),
@@ -120,24 +129,32 @@ export const page = defineType({
   ],
 
   preview: {
-    select: {
-      title: 'title',
-      slug: 'slug',
-      pageStatus: 'pageStatus',
-    },
-
-    prepare(selection) {
-      const { title, slug, pageStatus } = selection
-
-      const status =
-        pageStatusConfig[pageStatus as keyof typeof pageStatusConfig] ??
-        pageStatusConfig.public
-
-      return {
-        title,
-        subtitle: `${status.label} · /${slug?.current || 'no-slug'}`,
-        media: status.icon,
-      }
-    },
+  select: {
+    title: 'title',
+    slug: 'slug',
+    parentSlug: 'parent.slug.current',
+    pageStatus: 'pageStatus',
   },
+
+  prepare(selection) {
+    const { title, slug, parentSlug, pageStatus } = selection
+
+    const status =
+      pageStatusConfig[pageStatus as keyof typeof pageStatusConfig] ??
+      pageStatusConfig.public
+
+    const pagePath = slug?.current || 'no-slug'
+    const parentPath = parentSlug // already just the string, or undefined
+
+    const path = parentPath
+      ? `/${parentPath}/${pagePath}`
+      : `/${pagePath}`
+
+    return {
+      title: title || 'Untitled',
+      subtitle: `${status.label} · ${path}`,
+      media: status.icon,
+    }
+  },
+},
 })
