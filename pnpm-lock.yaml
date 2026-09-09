@@ -157,6 +157,9 @@ importers:
       astro-portabletext:
         specifier: ^1.0.0
         version: 1.0.0(astro@7.3.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.1)(@vercel/functions@3.9.5(ws@8.21.3))(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.0))
+      groq:
+        specifier: ^6.12.0
+        version: 6.12.0
       react:
         specifier: ^19.2.8
         version: 19.2.8

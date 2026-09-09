@@ -1,0 +1,17 @@
+---
+import RichTextBlock from './blocks/RichTextBlock.astro'
+
+const { content = [] } = Astro.props
+---
+
+{
+  content.map((block: any) => {
+    switch (block._type) {
+      case 'richTextBlock':
+        return <RichTextBlock {...block} />
+
+      default:
+        return null
+    }
+  })
+}

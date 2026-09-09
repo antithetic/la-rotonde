@@ -1,7 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro'
+// TODO: Use for rendering homePage content
+import PortableText from '@/components/PortableText.astro'
+
 import { loadQuery } from '@/lib/sanity/load-query'
-import { SITE_SETTINGS_QUERY } from '@/lib/sanity/queries'
+import { SITE_SETTINGS_QUERY, HOME_PAGE_QUERY } from '@/lib/sanity/queries'
 
 // fetch site settings from sanity
 const { data: settings } = await loadQuery<{
@@ -10,7 +13,12 @@ const { data: settings } = await loadQuery<{
   copyrightText: string | null
 } | null>({ query: SITE_SETTINGS_QUERY })
 
+const { data: homePage } = await loadQuery<{
+  content: any[]
+} | null>({ query: HOME_PAGE_QUERY })
+
 console.log('settings', settings)
+console.log('homePage', homePage)
 ---
 
 <Layout>
