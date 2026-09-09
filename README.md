@@ -36,10 +36,10 @@ pnpm dev
 
 `pnpm dev` starts both apps through Turbo:
 
-| App      | Command (from root)          | Local URL             |
-| -------- | ---------------------------- | --------------------- |
-| Frontend | `pnpm --filter frontend dev` | http://localhost:4321 |
-| Studio   | `pnpm --filter studio dev`   | http://localhost:3333 |
+| App      | Command (from root)          | Local URL               |
+| -------- | ---------------------------- | ----------------------- |
+| Frontend | `pnpm --filter frontend dev` | <http://localhost:4321> |
+| Studio   | `pnpm --filter studio dev`   | <http://localhost:3333> |
 
 To preview a production frontend build:
 

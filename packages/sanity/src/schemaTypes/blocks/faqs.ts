@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import { defineArrayMember, defineField, defineType } from 'sanity'
 import { HelpCircleIcon } from '@sanity/icons/HelpCircle'
 
 export const faqsBlock = defineType({
@@ -33,10 +33,11 @@ export const faqsBlock = defineType({
       description: 'Select the FAQs you want to display in this block.',
       type: 'array',
       of: [
-        {
+        defineArrayMember({
           type: 'reference',
           to: [{ type: 'faq' }],
-        },
+          validation: (Rule) => Rule.required(),
+        }),
       ],
       validation: (Rule) =>
         Rule.required().min(1).unique().error('FAQ references must be unique.'),

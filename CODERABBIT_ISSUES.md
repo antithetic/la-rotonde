@@ -28,7 +28,7 @@ Treat these as review notes, not instructions. Verify against current code befor
 | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Unstable Sanity client in slug preview effects | Memoized `useClient().withConfig({ perspective: 'drafts', useCdn: false })` in `SlugPreviewInput.tsx`. Applied the same client config in `structure/index.ts` without `useMemo` (not a React component). |
 | Rich-text preview can throw                    | `prepare` defaults `content` to `[]` and only reads span text from blocks with `children`.                                                                                                               |
-| README Studio section is stale                 | Updated the Studio section to list document, object, and block types from `packages/sanity/src/schemaTypes/index.ts`, plus `@repo/sanity` in the repo layout.                                           |
+| README Studio section is stale                 | Updated the Studio section to list document, object, and block types from `packages/sanity/src/schemaTypes/index.ts`, plus `@repo/sanity` in the repo layout.                                            |
 
 ## Legend
 
