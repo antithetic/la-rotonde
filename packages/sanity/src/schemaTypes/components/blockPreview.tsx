@@ -8,6 +8,7 @@ interface PageBuilderBlockPreviewProps {
   title?: ReactNode
   excerpt?: string
   details?: string[]
+  detailsItalic?: boolean
   image?: string
   imageLayout?: 'banner' | 'thumbnail'
 }
@@ -18,6 +19,7 @@ export function PageBuilderBlockPreview({
   title,
   excerpt,
   details = [],
+  detailsItalic = false,
   image,
   imageLayout = 'banner',
 }: PageBuilderBlockPreviewProps) {
@@ -33,10 +35,13 @@ export function PageBuilderBlockPreview({
       ) : null}
 
       {excerpt ? (
-        <Text size={1} muted
-        style={{
+        <Text
+          size={1}
+          muted
+          style={{
             marginBottom: '1rem',
-          }}>
+          }}
+        >
           {excerpt}
         </Text>
       ) : null}
@@ -44,7 +49,7 @@ export function PageBuilderBlockPreview({
   )
 
   return (
-    <Card padding={3}>
+    <Card paddingX={3} paddingY={6}>
       <Stack gap={4}>
         <Flex align="center" gap={2}>
           {Icon ? <Icon /> : null}
@@ -106,10 +111,14 @@ export function PageBuilderBlockPreview({
         {imageLayout === 'banner' || !imageUrl ? content : null}
 
         {details.length > 0 ? (
-          <Flex gap={4}  wrap="wrap"
-          >
+          <Flex gap={4} wrap="wrap">
             {details.map((detail) => (
-              <Text key={detail} size={1} muted>
+              <Text
+                key={detail}
+                size={1}
+                muted
+                style={detailsItalic ? { fontStyle: 'italic' } : undefined}
+              >
                 {detail}
               </Text>
             ))}

@@ -48,9 +48,10 @@ export const heroBlock = defineType({
       title: 'title',
       image: 'image',
       content: 'content',
+      alt: 'image.alt',
     },
 
-    prepare({ title, image, content = [] }) {
+    prepare({ title, image, content = [], alt }) {
       const excerpt = content
         .flatMap(
           (block: { children?: { text?: string }[] }) =>
@@ -66,7 +67,9 @@ export const heroBlock = defineType({
           ? urlForImage(image).width(1200).height(200).fit('crop').url()
           : undefined,
         excerpt: getBlockExcerpt(excerpt),
-        details: [hasImage ? '' : 'No Image Added'],
+        details: [
+          hasImage ? (alt ? `“${alt}”` : undefined) : 'No Image Added',
+        ].filter(Boolean),
       }
     },
   },
@@ -86,6 +89,7 @@ export const heroBlock = defineType({
           title={typeof preview.title === 'string' ? preview.title : undefined}
           excerpt={preview.excerpt}
           details={preview.details}
+          detailsItalic
           image={preview.image}
           imageLayout="banner"
         />
