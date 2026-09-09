@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity'
 import { FileX, FileIcon, FileText } from 'lucide-react'
-import { slugPreviewInput } from '../components/slugPreviewInput'
+import { slugPreviewInput } from '../components/SlugPreviewInput'
 
 const pageStatusConfig = {
   public: {
