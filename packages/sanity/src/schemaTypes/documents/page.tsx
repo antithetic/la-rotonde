@@ -1,6 +1,8 @@
 import { defineField, defineType } from 'sanity'
 import { FileX, FileIcon, FileText } from 'lucide-react'
-import { slugPreviewInput } from '../components/SlugPreviewInput'
+import { slugPreviewInput } from '../components/slugPreviewInput'
+
+import { IncomingRefIndicator } from '../components/IncomingReferenceDocumentLevel'
 
 const pageStatusConfig = {
   public: {
@@ -22,6 +24,9 @@ export const page = defineType({
   title: 'Page',
   type: 'document',
   icon: FileIcon,
+  components: {
+    input: IncomingRefIndicator,
+  },
   fields: [
     defineField({
       name: 'title',
